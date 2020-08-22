@@ -7,5 +7,5 @@ CREATE TABLE contributions (
   story_id INTEGER REFERENCES stories(id) ON DELETE CASCADE,
   content TEXT NOT NULL,
   accepted BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP NOT NULL
+  created_at TIMESTAMP DEFAULT current_timestamp
 );

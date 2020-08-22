@@ -8,5 +8,5 @@ CREATE TABLE stories (
   content TEXT NOT NULL,
   is_complete BOOLEAN NOT NULL DEFAULT FALSE,
   photo_url VARCHAR(255) DEFAULT 'no photo',
-  created_at TIMESTAMP NOT NULL
+  created_at TIMESTAMP DEFAULT current_timestamp
 );
