@@ -12,7 +12,7 @@ const createStory = (db) => {
   router.post("/", (req, res) => {
     let query = `INSERT INTO stories 
       (owner_id, title, content, photo_url)
-      VALUES ($1, $2, $3, $4);`;
+      VALUES ($1, $2, $3, $4) RETURNING *;`;
 
     const inputValues = [
       req.body.owner_id,
@@ -26,8 +26,9 @@ const createStory = (db) => {
 
     db.query(query, inputValues)
       .then(data => {
-        const widgets = data.rows;
-        res.json({ widgets });
+        const stories = data.rows;
+        console.log(stories);
+        res.json({ stories });
       })
       .catch(err => {
         res

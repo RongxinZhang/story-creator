@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js"
@@ -24,6 +24,9 @@
     "pg-native": "^3.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "chai": "^4.2.0",
+    "mocha": "^8.1.1",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
   }
 }
