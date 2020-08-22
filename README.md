@@ -14,6 +14,11 @@ The following steps are only for _one_ of the group members to perform.
 
 ## Getting Started
 
+##NOTE:##
+If you are having issues with the DB:
+Create user: `CREATE USER labber WITH PASSWORD 'labber' CREATEDB`
+Create db: ` CREATE DATABASE midterm;`
+
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
 2. Update the .env file with your correct local information 
   - username: `labber` 
