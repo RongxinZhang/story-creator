@@ -8,11 +8,23 @@
 const express = require('express');
 const router  = express.Router();
 
-module.exports = (db) => {
-  router.get("/", (req, res) => {
-    let query = `SELECT * FROM widgets`;
-    console.log(query);
-    db.query(query)
+const createStory = (db) => {
+  router.post("/", (req, res) => {
+    let query = `INSERT INTO stories 
+      (owner_id, title, content, photo_url)
+      VALUES ($1, $2, $3, $4);`;
+
+    const inputValues = [
+      req.body.owner_id,
+      req.body.title,
+      req.body.content,
+      req.body.photo_url
+    ];
+
+    console.log(req.body);
+    console.log(inputValues);
+
+    db.query(query, inputValues)
       .then(data => {
         const widgets = data.rows;
         res.json({ widgets });
@@ -25,3 +37,5 @@ module.exports = (db) => {
   });
   return router;
 };
+
+module.exports = {createStory};
