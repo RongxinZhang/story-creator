@@ -43,7 +43,7 @@ const storiesRoutes = require("./routes/stories");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", toHomePage(db));
-app.use("/api/users", renderHomePage(db));
+app.use("/", renderHomePage(db));
 app.use("/api/stories", storiesRoutes.createStory(db));
 
 
