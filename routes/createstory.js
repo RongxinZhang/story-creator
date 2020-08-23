@@ -16,6 +16,7 @@ module.exports = (db) => {
     
   router.post("/story", (req, res) => {
     // const user_id = req.session.user_id;
+    //dummy owner_id
     const user_id = 1;
     // addStory({...req.body, owner_id: user_id})
     const queryString = `
@@ -29,7 +30,7 @@ module.exports = (db) => {
     VALUES ($1, $2, $3, $4, $5) 
     RETURNING *
     ;`;
-    console.log(req.body);
+    // console.log(req.body);
 
     const queryParams = [
       user_id,
