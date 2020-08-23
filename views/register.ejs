@@ -9,9 +9,28 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <style>
+      input{
+        display:block;
+      }
+    </style>
   </head>
 
   <body>
     <h1>This is register page</h1>
+    <form action="/", method ='POST'>
+       <label for="">Username:</label>
+       <input type="text" name='username'>
+       <label for="">First Name:</label>
+       <input type="text" name ='first_name'>
+       <label for="">last Name:</label>
+       <input type="text" name ='last_name'>
+       <label for="">Email:</label>
+       <input type="text" name ='email'>
+       <label for="">Password:</label>
+       <input type="text" name ='password'>
+
+
+    </form>
   </body>
 </html>

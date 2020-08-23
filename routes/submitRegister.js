@@ -11,16 +11,14 @@ const router = express.Router();
 
 const submitRegister = (db) => {
   router.post('/register', (req, res) => {
-    const queryString = `INSERT INTO users (id, username, first_name, last_name, email, password, created_at) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *;`
+    const queryString = `INSERT INTO users ( username, first_name, last_name, email, password) VALUES($1, $2, $3, $4, $5) RETURNING *;`
 
     const inputValue = [
-      req.body.id,
       req.body.username,
       req.body.first_name,
       req.body.last_name,
       req.body.email,
       req.body.password,
-      req.body.created_at
     ];
     db.query(queryString, inputValue)
       .then(data => {

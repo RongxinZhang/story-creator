@@ -10,8 +10,7 @@ const router = express.Router();
 
 
 module.exports = (db) => {
-  router.get("/register", (req, res) => {
-    console.log('hello')
+  router.get("/", (req, res) => {
     res.render('register');
   });
   return router;
