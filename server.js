@@ -42,7 +42,7 @@ const submitLogin =require("./routes/submitLogin");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/stories", storiesRoutes.createStory(db));
 app.use("/login",userLogin.toLogin(db));
-app.use("/login", submitLogin.toSubmit(db));
+app.use("/api/login", submitLogin.toSubmit(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
