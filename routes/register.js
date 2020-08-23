@@ -7,13 +7,13 @@
 
 const express = require('express');
 const router = express.Router();
-const app = express();
+
 
 const registerUser = (db) => {
-  router.get('/register', (req, res) => {
+  router.get("/register", (req, res) => {
     // console.log('hello')
-    res.render("register");
-  })
+    res.render('register');
+  });
   return router;
 }
 

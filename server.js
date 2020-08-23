@@ -43,8 +43,8 @@ const registered =require("./routes/submitRegister");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/stories", storiesRoutes.createStory(db));
-app.use("/api/register", register.registerUser(db));
-app.use("/register", registered.submitRegister(db));
+app.use("/register", register.registerUser(db));
+app.use("/api/register", registered.submitRegister(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -52,9 +52,9 @@ app.use("/register", registered.submitRegister(db));
 app.get("/", (req, res) => {
   res.render("index");
 });
-app.get("/register",(req,res)=>{
-  res.render('register');
-});
+// app.get("/register",(req,res)=>{
+//   res.render('register');
+// });
 
 
 app.listen(PORT, () => {

@@ -11,7 +11,7 @@ const router = express.Router();
 
 const submitRegister = (db) => {
   router.post('/register', (req, res) => {
-    const queryString = 'INSERT INTO users(id, username, first_name, last_name, email, password, created_at) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *;'
+    const queryString = `INSERT INTO users (id, username, first_name, last_name, email, password, created_at) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *;`
 
     const inputValue = [
       req.body.id,
