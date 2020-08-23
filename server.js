@@ -49,6 +49,7 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/stories", storiesRoutes.createStory(db));
 app.use("/api/register", registered.submitRegister(db));
 app.use("/register", registerUser(db));
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
