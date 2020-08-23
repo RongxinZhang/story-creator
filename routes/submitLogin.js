@@ -27,7 +27,7 @@ const toSubmit = (db) =>{
     db.query(queryString, inputValue)
     .then(data=>{
       const users = data.rows;
-      res.json({user});
+      res.json({users});
     })
     .catch(err=>{
       res
