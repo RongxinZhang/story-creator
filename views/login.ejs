@@ -9,9 +9,23 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <style>
+    input{
+      display:block;
+    }
+    </style>
   </head>
 
   <body>
     <h1>This is the login page</h1>
+    <form action="/" method ='POST'>
+      <label for="">username:</label>
+      <input type="text" name="username">
+      <label for="">Email:</label>
+      <input type="text" name ="email">
+      <label for="">password:</label>
+      <input type="text" name ='password'>
+      <input type="submit">
+    </form>
   </body>
 </html>

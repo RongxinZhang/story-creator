@@ -13,12 +13,11 @@ const toSubmit = (db) =>{
     const queryString =`
     SELECT * FROM users 
     WHERE 
-    $1 IN (SELECT username FROM users) AND
-    $2 IN (SELECT email FROM users) AND
-    $3 IN (SELECT password FROM users)
+     username = $1
+     AND email = $2
+     AND password = $3;
     `;
-    const inputValue=[
-     
+    const inputValue = [
       req.body.username,
       req.body.email,
       req.body.password
