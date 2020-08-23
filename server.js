@@ -40,11 +40,12 @@ const storyRoutes = require("./routes/story");
 /**
  * API ROUTES
  */
+
 app.use("/api/users", usersRoutes(db));
 app.use("/api/stories", storiesRoutes.createStory(db));
 
 // Route to get contributions
-app.use("api/story", storyRoutes.getContributions(db));
+app.use("/api/story", storyRoutes.getContributions(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
