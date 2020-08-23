@@ -36,12 +36,13 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const storiesRoutes = require("./routes/stories");
 const userLogin = require("./routes/login");
+const submitLogin =require("./routes/submitLogin");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/stories", storiesRoutes.createStory(db));
 app.use("/login",userLogin.toLogin(db));
-
+app.use("/login", submitLogin.toSubmit(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
