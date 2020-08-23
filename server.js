@@ -31,9 +31,9 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
-// Separated Routes for each Resource
+// Separated Routes for each Resource       //userRoutes
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/home");
+const toHomePage = require("./routes/home");
 const storiesRoutes = require("./routes/stories");
 
 
@@ -41,7 +41,7 @@ const storiesRoutes = require("./routes/stories");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
+app.use("/api/users", toHomePage(db));
 app.use("/api/stories", storiesRoutes.createStory(db));
 
 
