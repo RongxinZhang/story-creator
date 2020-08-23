@@ -21,10 +21,14 @@ module.exports = (db) => {
         res.json({ users });
       })
       .catch(err => {
+        console.log(err);
         res
           .status(500)
           .json({ error: err.message });
       });
+    
   });
   return router;
 };
+
+
