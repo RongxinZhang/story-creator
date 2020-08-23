@@ -9,6 +9,7 @@ const express    = require("express");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const bodyParser = require("body-parser");
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -30,6 +31,9 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
