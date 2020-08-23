@@ -9,9 +9,9 @@ const express = require('express');
 const router = express.Router();
 
 
-const registerUser = (db) => {
+module.exports = (db) => {
   router.get("/register", (req, res) => {
-    // console.log('hello')
+    console.log('hello')
     res.render('register');
   });
   return router;
@@ -19,4 +19,4 @@ const registerUser = (db) => {
 
 
 
-module.exports = { registerUser }
+// module.exports = { registerUser }
