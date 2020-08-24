@@ -44,25 +44,35 @@ const getContributions = (db)=>{
  * req.body: content
  */
 const createContribution = (db)=>{
-  router.get("/:storyId/contributions", (req,res)=>{
+  router.post("/:storyId/contributions", (req,res)=>{
+    console.log("TEST");
+    // TODO: should use user session
+    const userId = 1;
+
     let query = `INSERT INTO contributions 
           (user_id, story_id, content)
-          VALUES ($1, $2, $3), RETURNING *;`;
+          VALUES ($1, 
+              (SELECT id FROM stories WHERE storyurl_id = $2), 
+            $3) RETURNING *;`;
 
-    
-    // const inputValues = [ req.params.storyId ];
+    const inputValues = [ userId, req.params.storyId, req.body.content ];
 
-    // db.query(query, inputValues)
-    //   .then(data => {
-    //     res.json(data.rows);
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
+    db.query(query, inputValues)
+      .then(data => {
+        console.log(data);
+        res.json(data.rows);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
   return router;
 };
 
-module.exports = { getContributions };
+
+module.exports = {
+  getContributions,
+  createContribution
+};
