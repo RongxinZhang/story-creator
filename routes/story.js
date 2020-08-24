@@ -122,16 +122,13 @@ const acceptContribution = (db)=>{
     db.query(selectStoryQuery, [req.params.storyId])
       .then(data => {
         if (userId !== data.rows[0].owner_id) {
-          console.log("ERR: Not owner of story");
           throw Error("Creator is not owner of story");
         }
         // Next request
         return db.query(updateContributionDuery, [req.params.contributionId, req.params.storyId]);
       })
       .then((dataTwo)=>{
-        console.log("Second batch", dataTwo);
         if (dataTwo.rowCount < 1) {
-          console.log("WTF");
           throw Error("Error with accepting contribution");
         }
         res.json(dataTwo.rows);
