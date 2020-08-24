@@ -1,8 +1,3 @@
-/*
- * All routes for Story-Creator are defined here
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require('express');
 const router  = express.Router();
 const { generateRandomId } = require('../lib/data-helpers.js');
@@ -44,6 +39,7 @@ module.exports = (db) => {
       .then(res => res.rows)
       .then(story => {
         res
+        // .json(story.rows)
         .status(200)
         .redirect('/new');
       })
