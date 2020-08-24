@@ -11,7 +11,13 @@ const router = express.Router();
 
 const submitRegister = (db) => {
   router.post('/', (req, res) => {
-    const queryString = `INSERT INTO users ( username, first_name, last_name, email, password) VALUES($1, $2, $3, $4, $5) RETURNING *;`
+    // const queryString1 =`SELECT username FROM users WHERE username =$1;`
+    // const inputField1 = [req.body.username];
+    // if(db.query(queryString1, inputField1)['users'][0]['username'] === req.body.username){
+    //  return;
+    // }
+    const queryString = `INSERT INTO users ( username, first_name, last_name, email, password) VALUES($1, $2, $3, $4, $5)
+    RETURNING *;`
 
     const inputValue = [
       req.body.username,
