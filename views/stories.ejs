@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories</title>
+</head>
+<body>
+  <section>
+    <% for (let story of stories) { %>
+    <div>
+      <h4><%= story.status %></h4>
+      <h2><%= story.title %></h2>
+      <h4>Created By: <%= story.created_by %></h4>
+      <h5>Created On: <%= story.created_at %></h5>
+      <h5>Total Contributions: <%= story.total_contributions %></h5>
+    </div>
+    <% } %>
+  </section>
+</body>
+</html>

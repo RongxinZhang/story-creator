@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Story</title>
+</head>
+<body>
+  <form method="POST" action="/new/story">
+    <label>Create a New Story</label>
+    
+    <div>
+      <input type="text" name="title" placeholder="Story Title">   
+    </div>
+
+    <div>
+      <input type="textarea" name="content" placeholder="Type your story...">
+    </div>
+
+    <div>
+      <input type="url" name="photo_url" placeholder="Insert a photo">
+    </div>
+
+    <div>
+      <button type="submit">Create Story</button>
+      <a href='#'>Cancel</a>
+    </div>
+
+  </form>
+</body>
+</html>

@@ -10,15 +10,22 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`
-    SELECT * FROM users 
-    JOIN stories ON users.id = stories.owner_id 
-    JOIN contributions ON users.id = contributions.user_id 
-    JOIN contribution_likes ON users.id = contribution_likes.user_id
-    ;`)
+    const queryString = `
+    SELECT stories.title AS title, 
+    stories.is_complete AS status, 
+    stories.created_at AS created_at,
+    COUNT(contributions.*) AS total_contributions,
+    users.username AS created_by
+    FROM stories
+    JOIN users ON stories.owner_id = users.id
+    LEFT JOIN contributions ON stories.id = contributions.story_id
+    GROUP BY stories.id, users.username
+    ORDER BY created_at DESC
+    ;`;
+    return db.query(queryString)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        const results = data.rows;
+        res.render('stories', { stories: results })
       })
       .catch(err => {
         console.log(err);

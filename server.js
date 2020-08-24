@@ -35,18 +35,11 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const toHomePage = require("./routes/home");
 const renderHomePage =require("./routes/homeRender");
-const storiesRoutes = require("./routes/stories");
-
-
-
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/stories", toHomePage(db));
 app.use("/", renderHomePage(db));
-app.use("/api/stories", storiesRoutes.createStory(db));
-
-
 
 // Home page
 // Warning: avoid creating more routes in this file!
