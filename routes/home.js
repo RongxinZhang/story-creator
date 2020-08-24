@@ -17,7 +17,7 @@ module.exports = (db) => {
     JOIN contribution_likes ON users.id = contribution_likes.user_id
     ;`)
       .then(data => {
-        const users = data.rows[0];
+        const users = data.rows;
         res.json({ users });
       })
       .catch(err => {
