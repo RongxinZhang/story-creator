@@ -10,8 +10,7 @@ const router  = express.Router();
 
 const getContributions = (db)=>{
   router.get("/:storyId/contributions", (req,res)=>{
-    let query = `
-                SELECT contributions.user_id AS user_id, 
+    let query = ` SELECT contributions.user_id AS user_id, 
                   contributions.user_id AS user_id, 
                   contributions.content AS content, 
                   contributions.created_at AS created_at, 
@@ -23,8 +22,7 @@ const getContributions = (db)=>{
                 GROUP BY contributions.id, users.username
                 HAVING contributions.story_id = 
                   (SELECT id FROM stories WHERE storyurl_id = $1 )
-                ORDER BY contributions.created_at DESC;
-                `;
+                ORDER BY contributions.created_at DESC;`;
     const inputValues = [ req.params.storyId ];
 
     db.query(query, inputValues)
@@ -36,6 +34,33 @@ const getContributions = (db)=>{
           .status(500)
           .json({ error: err.message });
       });
+  });
+  return router;
+};
+
+/**
+ * Create a contribution for a story
+ * @param {node-postgress} db
+ * req.body: content
+ */
+const createContribution = (db)=>{
+  router.get("/:storyId/contributions", (req,res)=>{
+    let query = `INSERT INTO contributions 
+          (user_id, story_id, content)
+          VALUES ($1, $2, $3), RETURNING *;`;
+
+    
+    // const inputValues = [ req.params.storyId ];
+
+    // db.query(query, inputValues)
+    //   .then(data => {
+    //     res.json(data.rows);
+    //   })
+    //   .catch(err => {
+    //     res
+    //       .status(500)
+    //       .json({ error: err.message });
+    //   });
   });
   return router;
 };
