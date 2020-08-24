@@ -33,9 +33,9 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-    
   });
   return router;
+  
 };
 
 
