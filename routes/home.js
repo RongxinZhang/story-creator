@@ -25,7 +25,7 @@ module.exports = (db) => {
     return db.query(queryString)
       .then(data => {
         const results = data.rows;
-        res.render('stories', { stories: results })
+        res.render('stories', { stories: results });
       })
       .catch(err => {
         console.log(err);
@@ -35,7 +35,6 @@ module.exports = (db) => {
       });
   });
   return router;
-  
 };
 
 
