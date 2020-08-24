@@ -37,7 +37,7 @@ module.exports = (db) => {
       .then(result => {
         const story = result.rows[0];
         res.send({story: result.rows[0], message: "successfully created"})
-        // res.render('ejspage', story)
+        // res.render('story', { story: story })
       })
       .catch(err => {
         console.error(err);
