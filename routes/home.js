@@ -14,6 +14,7 @@ module.exports = (db) => {
     SELECT stories.title AS title, 
     stories.is_complete AS status, 
     stories.created_at AS created_at,
+    stories.photo_url,
     COUNT(contributions.*) AS total_contributions,
     users.username AS created_by
     FROM stories
