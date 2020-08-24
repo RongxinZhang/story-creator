@@ -41,7 +41,6 @@ module.exports = (db) => {
     
     return db.query(queryString, queryParams)
       .then(result => {
-        console.log(result.rows[0])
         const story = result.rows[0];
         res.send({story: result.rows[0], message: "successfully updated"})
         // res.render('ejspage', story)
