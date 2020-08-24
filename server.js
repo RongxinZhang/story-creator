@@ -47,6 +47,7 @@ app.use("/", renderHomePage(db));
 app.use("/api/stories", storiesRoutes.createStory(db));
 
 
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
