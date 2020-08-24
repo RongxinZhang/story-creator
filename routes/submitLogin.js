@@ -12,13 +12,10 @@ const toSubmit = (db) =>{
   router.post("/", (req, res)=>{
     const queryString =`
     SELECT * FROM users 
-    WHERE 
-     users.username = $1
-     AND users.email = $2
-     AND users.password = $3;
+    WHERE  users.email = $1
+     AND users.password = $2;
     `;
     const inputValue = [
-      req.body.username,
       req.body.email,
       req.body.password
     ];
