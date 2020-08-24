@@ -104,37 +104,50 @@ const likeContribution = (db)=>{
  * @param {node-postgress} db
  * req.body: content
  */
-// const appendContribution = (db)=>{
-//   router.post("/:storyId/contributions/", (req,res)=>{
-//     console.log("TEST");
-//     // TODO: should use user session
-//     const userId = 1;
+const acceptContribution = (db)=>{
+  router.post("/:storyId/contributions/append/:contributionId", (req,res)=>{
+    console.log("TEST");
+    // TODO: should use user session
+    const userId = 1;
 
-//     let query = `INSERT INTO contributions
-//           (user_id, story_id, content)
-//           VALUES ($1,
-//               (SELECT id FROM stories WHERE storyurl_id = $2),
-//             $3) RETURNING *;`;
+    let selectStoryQuery = `SELECT owner_id FROM stories WHERE storyurl_id = $1`;
 
-//     const inputValues = [ userId, req.params.storyId, req.body.content ];
+    let updateContributionDuery = `UPDATE contributions
+          SET accepted = TRUE
+          WHERE id = $1 AND story_id = (SELECT owner_id FROM stories WHERE storyurl_id = $2)
+          RETURNING *;`;
 
-//     db.query(query, inputValues)
-//       .then(data => {
-//         console.log(data);
-//         res.json(data.rows);
-//       })
-//       .catch(err => {
-//         res
-//           .status(500)
-//           .json({ error: err.message });
-//       });
-//   });
-//   return router;
-// };
+    // const inputValues = [ userId, req.params.storyId, req.body.content ];
+
+    db.query(selectStoryQuery, [req.params.storyId])
+      .then(data => {
+        if (userId !== data.rows[0].owner_id) {
+          console.log("ERR: Not owner of story");
+          throw Error("Creator is not owner of story");
+        }
+        // Next request
+        return db.query(updateContributionDuery, [req.params.contributionId, req.params.storyId]);
+      })
+      .then((dataTwo)=>{
+        console.log("Second batch", dataTwo);
+        if (dataTwo.rowCount < 1) {
+          console.log("WTF");
+          throw Error("Error with accepting contribution");
+        }
+        res.json(dataTwo.rows);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  return router;
+};
 
 module.exports = {
   getContributions,
   createContribution,
-  likeContribution
-  // appendContribution
+  likeContribution,
+  acceptContribution
 };
