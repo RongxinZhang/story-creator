@@ -105,8 +105,7 @@ const likeContribution = (db)=>{
  * req.body: content
  */
 const acceptContribution = (db)=>{
-  router.post("/:storyId/contributions/append/:contributionId", (req,res)=>{
-    console.log("TEST");
+  router.put("/:storyId/contributions/append/:contributionId", (req,res)=>{
     // TODO: should use user session
     const userId = 1;
 
@@ -142,9 +141,47 @@ const acceptContribution = (db)=>{
   return router;
 };
 
+
+const completeStory = (db)=>{
+  router.put("/:storyId/complete", (req,res)=>{
+    console.log("complete");
+    // TODO: should use user session
+    const userId = 1;
+  
+    let selectStoryQuery = `SELECT owner_id FROM stories WHERE storyurl_id = $1`;
+  
+    let updateContributionDuery = `UPDATE stories
+            SET is_complete = TRUE
+            WHERE storyurl_id = $1 AND owner_id = $2
+            RETURNING *;`;
+  
+    db.query(selectStoryQuery, [req.params.storyId])
+      .then(data => {
+        if (userId !== data.rows[0].owner_id) {
+          throw Error("Creator is not owner of story");
+        }
+        // Next request
+        return db.query(updateContributionDuery, [req.params.storyId, userId]);
+      })
+      .then((dataTwo)=>{
+        if (dataTwo.rowCount < 1) {
+          throw Error("Error with completing story");
+        }
+        res.json(dataTwo.rows);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  return router;
+};
+
 module.exports = {
   getContributions,
   createContribution,
   likeContribution,
-  acceptContribution
+  acceptContribution,
+  completeStory
 };
