@@ -11,6 +11,7 @@ const router  = express.Router();
 const toLogin = (db) =>{
   router.get("/",(req, res)=>{
     res.render('login');
+    console.log('hello this is me')
   })
   return router;
 }
