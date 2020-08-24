@@ -13,9 +13,9 @@ const toSubmit = (db) =>{
     const queryString =`
     SELECT * FROM users 
     WHERE 
-     username = $1
-     AND email = $2
-     AND password = $3;
+     users.username = $1
+     AND users.email = $2
+     AND users.password = $3;
     `;
     const inputValue = [
       req.body.username,
@@ -25,6 +25,7 @@ const toSubmit = (db) =>{
     
     db.query(queryString, inputValue)
     .then(data=>{
+      console.log(req.body);
       const users = data.rows;
       res.json({users});
     })
