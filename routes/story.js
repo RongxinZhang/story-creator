@@ -45,7 +45,6 @@ const getContributions = (db)=>{
  */
 const createContribution = (db)=>{
   router.post("/:storyId/contributions", (req,res)=>{
-    console.log("TEST");
     // TODO: should use user session
     const userId = 1;
 
@@ -71,8 +70,71 @@ const createContribution = (db)=>{
   return router;
 };
 
+/**
+ * Create a contribution for a story
+ * @param {node-postgress} db
+ * req.body: content
+ */
+const likeContribution = (db)=>{
+  router.post("/:storyId/contributions/:contributionId", (req,res)=>{
+    // TODO: should use user session
+    const userId = 1;
+
+    let query = `INSERT INTO contribution_likes 
+          (user_id, contribution_id)
+          VALUES ($1, $2) RETURNING *;`;
+
+    const inputValues = [userId, req.params.contributionId];
+
+    db.query(query, inputValues)
+      .then(data => {
+        console.log(data);
+        res.json(data.rows);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  return router;
+};
+/**
+ * Create a contribution for a story
+ * @param {node-postgress} db
+ * req.body: content
+ */
+// const appendContribution = (db)=>{
+//   router.post("/:storyId/contributions/", (req,res)=>{
+//     console.log("TEST");
+//     // TODO: should use user session
+//     const userId = 1;
+
+//     let query = `INSERT INTO contributions
+//           (user_id, story_id, content)
+//           VALUES ($1,
+//               (SELECT id FROM stories WHERE storyurl_id = $2),
+//             $3) RETURNING *;`;
+
+//     const inputValues = [ userId, req.params.storyId, req.body.content ];
+
+//     db.query(query, inputValues)
+//       .then(data => {
+//         console.log(data);
+//         res.json(data.rows);
+//       })
+//       .catch(err => {
+//         res
+//           .status(500)
+//           .json({ error: err.message });
+//       });
+//   });
+//   return router;
+// };
 
 module.exports = {
   getContributions,
-  createContribution
+  createContribution,
+  likeContribution
+  // appendContribution
 };

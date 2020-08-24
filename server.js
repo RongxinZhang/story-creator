@@ -47,7 +47,7 @@ app.use("/api/stories", storiesRoutes.createStory(db));
 // Route to get contributions
 app.use("/api/story", storyRoutes.createContribution(db));
 app.use("/api/story", storyRoutes.getContributions(db));
-// app.use("/api/story", storyRoutes.likeContribution(db));
+app.use("/api/story", storyRoutes.likeContribution(db));
 // app.use("/api/story", storyRoutes.appendContribution(db));
 
 // Home page
