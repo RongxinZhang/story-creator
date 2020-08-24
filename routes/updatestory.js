@@ -12,10 +12,9 @@ module.exports = (db) => {
       req.params.storyId
     ];
 
-    db.query(queryString, queryParams)
-      .then(res => res.rows[0])
-      .then(story => {
-        // res.send(story).status(200)
+    return db.query(queryString, queryParams)
+      .then(result => {
+        const story = result.rows[0]
         res.render('updatestory', {story: story})
       })
       .catch(err => {
@@ -31,6 +30,7 @@ module.exports = (db) => {
       UPDATE stories
       SET title = $1, content = $2, photo_url = $3
       WHERE storyurl_id = $4
+      RETURNING *
     ;`;
     const queryParams = [
       req.body.title,
@@ -39,10 +39,12 @@ module.exports = (db) => {
       req.params.storyId
     ];
     
-    db.query(queryString, queryParams)
-      .then(res => res.rows)
-      .then(story => {
-        res.send("🤗")
+    return db.query(queryString, queryParams)
+      .then(result => {
+        console.log(result.rows[0])
+        const story = result.rows[0];
+        res.send({story: result.rows[0], message: "successfully updated"})
+        // res.render('ejspage', story)
       })
       .catch(err => {
         console.error(err);

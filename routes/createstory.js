@@ -11,9 +11,8 @@ module.exports = (db) => {
     
   router.post("/story", (req, res) => {
     // const user_id = req.session.user_id;
-    //dummy owner_id
+    // dummy owner_id
     const user_id = 1;
-    // addStory({...req.body, owner_id: user_id})
     const queryString = `
     INSERT INTO stories (
       owner_id, 
@@ -25,7 +24,6 @@ module.exports = (db) => {
     VALUES ($1, $2, $3, $4, $5) 
     RETURNING *
     ;`;
-    // console.log(req.body);
 
     const queryParams = [
       user_id,
@@ -35,13 +33,11 @@ module.exports = (db) => {
       generateRandomId(6)];
     
     console.log(queryString, queryParams)
-    db.query(queryString, queryParams)
-      .then(res => res.rows)
-      .then(story => {
-        res
-        // .json(story.rows)
-        .status(200)
-        .redirect('/new');
+    return db.query(queryString, queryParams)
+      .then(result => {
+        const story = result.rows[0];
+        res.send({story: result.rows[0], message: "successfully created"})
+        // res.render('ejspage', story)
       })
       .catch(err => {
         console.error(err);
