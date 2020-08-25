@@ -21,7 +21,6 @@ db.connect();
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -40,25 +39,30 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-// const storiesRoutes = require("./routes/stories");
+const userLogin = require("./routes/login");
+const submitLogin =require("./routes/submitLogin");
+const toHomePage = require("./routes/home");
+const renderHomePage =require("./routes/homeRender");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
-const storyRoutes = require("./routes/storytop");
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
+const registerUser = require("./routes/register");
+const registered = require("./routes/submitRegister");
 
+app.use("/login",userLogin.toLogin(db));
+app.use("/api/login", submitLogin.toSubmit(db));
+
+app.use("/register", registerUser(db));
+app.use("/api/register", registered.submitRegister(db));
+// home pages
+app.use("/", renderHomePage(db));
+app.use("/stories", toHomePage(db));
+// create and update story
 app.use("/new", createRoutes(db));
 app.use("/update", updateRoutes(db));
-app.use("/story", storyRoutes(db));
-
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
