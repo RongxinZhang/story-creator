@@ -11,6 +11,8 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
+    const OFFSET = 5;
+
     const queryString = `
     SELECT stories.title AS title, 
     stories.is_complete AS status, 
@@ -23,14 +25,17 @@ module.exports = (db) => {
     LEFT JOIN contributions ON stories.id = contributions.story_id
     GROUP BY stories.id, users.username
     ORDER BY created_at DESC
+    LIMIT $1
     ;`;
-    return db.query(queryString)
+
+    return db.query(queryString, [OFFSET])
       .then(data => {
         let results = data.rows;
 
         for (const row of data.rows) {
           row.created_at = moment(row.created_at).format("MMM Do");
         }
+
         res.render('stories', { stories: results });
       })
       .catch(err => {
@@ -40,6 +45,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+  
   return router;
 };
 
