@@ -1,0 +1,49 @@
+ 
+   .topnav{
+    overflow: hidden;
+    float:left;
+    background-color:white;
+  
+    width:100%;
+    margin-top:-22px;
+    margin-bottom:20px;
+    height:60px;
+    display:flex;
+    justify-content: space-between;
+    box-shadow: 5px 2px 7px #888888;
+  }
+  .topnav a{
+    text-decoration: none;
+    color:rgba(0, 0, 0, 0.685);
+    padding:10px;
+   
+    line-height:33px;
+    padding-left:20px;
+    padding-right:20px;
+  }
+  
+  .leftnav{
+    display:flex;
+    flex-direction:row;
+  }
+  .rightnav{
+    display:flex;
+    flex-direction: row;
+  }
+  .topnav .leftnav .story{
+    font-size:20px;
+    color:black;
+    font-weight:500;
+  }
+  .topnav .leftnav .story:hover{
+    font-weight: 600;
+  }
+  .topnav .leftnav .stories:hover{
+    color:black;
+  }
+  .topnav .rightnav .login:hover{
+    color: rgb(21, 150, 21);
+  }
+  .topnav .rightnav .register:hover{
+    color: rgb(21, 150, 21);
+  }
