@@ -6,6 +6,7 @@
  */
 
 const express = require('express');
+let moment = require('moment');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -25,7 +26,11 @@ module.exports = (db) => {
     ;`;
     return db.query(queryString)
       .then(data => {
-        const results = data.rows;
+        let results = data.rows;
+
+        for (const row of data.rows) {
+          row.created_at = moment(row.created_at).format("MMM Do");
+        }
         res.render('stories', { stories: results });
       })
       .catch(err => {

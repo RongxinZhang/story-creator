@@ -1,7 +1,14 @@
 // See: https://sass-lang.com/
+html{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Lora', serif;
 
+  font-size: 14px;
+}
 body {
-  background-color: #EEE;
+  background-color:white;
+  line-height: 1.5em;
 
   h1 {
     color: #244751;

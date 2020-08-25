@@ -1,0 +1,70 @@
+section {
+  padding: 50px;
+  max-width: 850px;
+}
+
+#title {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 5px 0;
+  border-bottom: 1px solid #a3a3a3;
+}
+
+.story-container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: space-between;
+  margin: 30px 0;
+}
+
+.story-container .text-container {
+  align-items: center;
+  margin-right: 30px;
+}
+
+.story-container .text-container a {
+  text-decoration: none;
+  color: black;
+}
+
+.story-container .text-container h1 {
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.story-container .text-container h1:first-letter {
+  text-transform: uppercase;
+}
+
+.story-container .text-container h3 {
+  color: grey;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.story-container .text-container h4 {
+  margin: 3px 0;
+  font-weight: 400;
+}
+
+.story-container .text-container h5 {
+  color: grey;
+}
+
+.story-container .thumbnail-container {
+  height: 160px;
+  min-width: 160px;
+  margin-left: auto;
+}
+
+.story-container .thumbnail-container .image {
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+}
