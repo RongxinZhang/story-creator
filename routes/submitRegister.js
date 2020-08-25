@@ -15,7 +15,6 @@ const submitRegister = (db) => {
     const inputField1 = [req.body.username];
      db.query(queryString1, inputField1)
      .then(data => {
-       console.log(data.rows);
       const users = data.rows;
       if(data.rows[0]){
         res.send("error: duplicate username");
