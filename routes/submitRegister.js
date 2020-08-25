@@ -1,13 +1,7 @@
-/*
- * All routes for Widgets are defined here
- * Since this file is loaded in server.js into api/widgets,
- *   these routes are mounted onto /widgets
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require('express');
-const router = express.Router();
-
+const router  = express.Router();
+const bcrypt  = require('bcrypt');
+const { getUserByEmail } = require('../lib/data-helpers');
 
 const submitRegister = (db) => {
   router.post('/', (req, res) => {
@@ -16,11 +10,17 @@ const submitRegister = (db) => {
      db.query(queryString1, inputField1)
      .then(data => {
       const users = data.rows;
-      if(data.rows[0]){
+      if (data.rows[0]) {
         res.send("error: duplicate username");
-      }else{
-        const queryString = `INSERT INTO users ( username, first_name, last_name, email, password) VALUES($1, $2, $3, $4, $5)
-        RETURNING *;`
+      } else {
+
+        const queryString = `
+        INSERT INTO users 
+        (username, first_name, last_name, email, password)
+        VALUES($1, $2, $3, $4, $5)
+        RETURNING *
+        ;`;
+
         const inputValue = [
           req.body.username,
           req.body.first_name,
@@ -28,6 +28,7 @@ const submitRegister = (db) => {
           req.body.email,
           req.body.password,
         ];
+
         db.query(queryString, inputValue)
         .then(data => {
           const users = data.rows;
