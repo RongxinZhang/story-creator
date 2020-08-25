@@ -54,10 +54,8 @@ const updateRoutes = require("./routes/updatestory");
 
 
 app.use("/api/users", usersRoutes(db));
-app.use("/api/register", registered.submitRegister(db));
 app.use("/register", registerUser(db));
-
-app.use("/api/users", usersRoutes(db));
+app.use("/api/register", registered.submitRegister(db));
 app.use("/new", createRoutes(db));
 app.use("/update", updateRoutes(db));
 // Warning: avoid creating more routes in this file!
