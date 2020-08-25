@@ -151,6 +151,7 @@ const appendContribution = (db)=>{
           throw Error("Creator is not owner of story");
         }
         // Next request
+        console.log(data)
         return db.query(updateContributionQuery, [req.params.contributionId, req.params.storyId]);
       })
       .then((dataTwo)=>{
