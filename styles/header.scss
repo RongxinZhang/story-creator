@@ -1,10 +1,27 @@
- 
+/* Debugging Styling. Remove for production */ 
+// * { outline: 2px none  red ; row-gap: 5px; column-gap: 5px;}
+//  * * { outline: 2px none  green }
+//  * * * { outline: 2px  solid orange }
+//   * * * * { outline: 2px  solid blue }
+//    * * * * * { outline: 2px  solid red }
+//     * * * * * * { outline: 2px  solid green }
+//      * * * * * * * { outline: 2px  solid orange }
+//       * * * * * * * * { outline: 2px  solid blue } 
+
+    //  html{
+    //     padding:1em;
+    //   }
+    // body{
+    //   margin:0;
+    // }
    .topnav{
     overflow: hidden;
     float:left;
     background-color:white;
     width:100%;
-    margin-top:-22px;
+    position: absolute;
+    top: 0;
+    left: 0;
     margin-bottom:20px;
     height:60px;
     display:flex;
@@ -45,4 +62,8 @@
   }
   .topnav .rightnav .register:hover{
     color: rgb(21, 150, 21);
+  }
+
+  .pt-60{
+    padding-top:60px;
   }

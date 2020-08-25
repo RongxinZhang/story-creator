@@ -7,3 +7,13 @@ body {
     color: #244751;
   }
 }
+// create story section:
+.create-story{
+  padding-top:80px;
+}
+//login section and register form:
+.login-form{
+  display:flex;
+  flex-direction:column;
+  align-items: flex-start;
+}

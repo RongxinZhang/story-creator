@@ -3,28 +3,25 @@
   <head>
     <title>Home Page</title>
    
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <style>
-    input{
-      display:block;
-    }
-    </style>
+    <%- include('head') %>
+    
   </head>
 
   <body>
     <%- include('_header') %>
-    <h1>This is the login page</h1>
-    <form action="/api/login" method ='POST'>
-      <label for="">Email:</label>
-      <input type="email" name ="email">
-      <label for="">password:</label>
-      <input type="password" name ='password'>
-      <input type="submit">
-    </form>
+    <section class='pt-60 '>
+      <h1>This is the login page</h1>
+      <form action="/api/login" method ='POST' class='login-form '>
+        <div>
+          <label for="">Email:</label>
+          <input type="email" name ="email">
+        </div>
+        <div>
+          <label for="">password:</label>
+          <input type="password" name ='password'>
+        </div>
+        <input type="submit">
+      </form>
+    </section>
   </body>
 </html>

@@ -5,3 +5,13 @@ body {
 body h1 {
   color: #244751;
 }
+
+.create-story {
+  padding-top: 80px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
