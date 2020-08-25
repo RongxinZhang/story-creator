@@ -21,7 +21,6 @@ db.connect();
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -45,20 +44,23 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-const registerUser =require("./routes/register");
-const registered =require("./routes/submitRegister");
+const toHomePage = require("./routes/home");
+const renderHomePage =require("./routes/homeRender");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
+const registerUser =require("./routes/register");
+const registered =require("./routes/submitRegister");
 
 
 app.use("/register", registerUser(db));
 app.use("/api/register", registered.submitRegister(db));
+// Mount all resource routes
+// home pages
+app.use("/", renderHomePage(db));
+app.use("/stories", toHomePage(db));
+// create and update story
 app.use("/new", createRoutes(db));
 app.use("/update", updateRoutes(db));
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
