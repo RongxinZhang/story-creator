@@ -9,26 +9,26 @@ const express = require('express');
 const { query } = require('express');
 const router  = express.Router();
 
-const isStoryComplete = (db)=>{
-  return function(req, res, next) {
-    const query = `SELECT is_complete FROM stories WHERE storyurl_id = $1;`;
-    const inputValues = [ req.params.storyId ];
+// const isStoryComplete = (db)=>{
+//   return function(req, res, next) {
+//     const query = `SELECT is_complete FROM stories WHERE storyurl_id = $1;`;
+//     const inputValues = [ req.params.storyId ];
 
-    db.query(query, inputValues)
-      .then(data => {
-        if (data.rows[0] === false) {
-          next();
-        } else {
-          throw Error("Story already completed");
-        }
-      })
-      .catch(err => {
-        res
-          .status(403)
-          .json({ error: err.message });
-      });
-  };
-};
+//     db.query(query, inputValues)
+//       .then(data => {
+//         if (data.rows[0] === false) {
+//           next();
+//         } else {
+//           throw Error("Story already completed");
+//         }
+//       })
+//       .catch(err => {
+//         res
+//           .status(403)
+//           .json({ error: err.message });
+//       });
+//   };
+// };
 
 const getContributions = (db)=>{
   router.get("/:storyId/contributions", (req,res)=>{
@@ -68,7 +68,7 @@ const getContributions = (db)=>{
  * req.body: content
  */
 const createContribution = (db)=>{
-  router.post("/:storyId/contributions", isStoryComplete(db), (req,res)=>{
+  router.post("/:storyId/contributions", (req,res)=>{
     // TODO: should use user session
     const userId = 1;
 
