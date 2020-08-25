@@ -11,31 +11,36 @@ const router = express.Router();
 
 const submitRegister = (db) => {
   router.post('/', (req, res) => {
-    // const queryString1 =`SELECT username FROM users WHERE username =$1;`
-    // const inputField1 = [req.body.username];
-    // if(db.query(queryString1, inputField1)['users'][0]['username'] === req.body.username){
-    //  return;
-    // }
-    const queryString = `INSERT INTO users ( username, first_name, last_name, email, password) VALUES($1, $2, $3, $4, $5)
-    RETURNING *;`
-
-    const inputValue = [
-      req.body.username,
-      req.body.first_name,
-      req.body.last_name,
-      req.body.email,
-      req.body.password,
-    ];
-    db.query(queryString, inputValue)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message })
-      })
+    const queryString1 =`SELECT id FROM users WHERE username =$1;`
+    const inputField1 = [req.body.username];
+     db.query(queryString1, inputField1)
+     .then(data => {
+      const users = data.rows;
+      if(data.rows){
+        res.send("error: duplicate username");
+      }else{
+        const queryString = `INSERT INTO users ( username, first_name, last_name, email, password) VALUES($1, $2, $3, $4, $5)
+        RETURNING *;`
+        const inputValue = [
+          req.body.username,
+          req.body.first_name,
+          req.body.last_name,
+          req.body.email,
+          req.body.password,
+        ];
+        db.query(queryString, inputValue)
+        .then(data => {
+          const users = data.rows;
+          res.json({ users });
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message })
+        })
+      }
+    })
+  
   })
   return router;
 }
