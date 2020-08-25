@@ -133,14 +133,17 @@ const appendContribution = (db)=>{
     // TODO: should use user session
     const userId = 1;
 
-    let selectStoryQuery = `SELECT owner_id FROM stories WHERE storyurl_id = $1`;
+    const selectStoryQuery = `SELECT owner_id FROM stories WHERE storyurl_id = $1`;
 
-    let updateContributionDuery = `UPDATE contributions
+    const updateContributionQuery = `UPDATE contributions
           SET accepted = TRUE
           WHERE id = $1 AND story_id = (SELECT owner_id FROM stories WHERE storyurl_id = $2)
           RETURNING *;`;
-
-    // const inputValues = [ userId, req.params.storyId, req.body.content ];
+    // const updateStoryQuery = `
+    //   UPDATE stories
+    //   SET content = content + 
+    //   WHERE 
+    // ;`;
 
     db.query(selectStoryQuery, [req.params.storyId])
       .then(data => {
@@ -148,9 +151,10 @@ const appendContribution = (db)=>{
           throw Error("Creator is not owner of story");
         }
         // Next request
-        return db.query(updateContributionDuery, [req.params.contributionId, req.params.storyId]);
+        return db.query(updateContributionQuery, [req.params.contributionId, req.params.storyId]);
       })
       .then((dataTwo)=>{
+        console.log(dataTwo)
         if (dataTwo.rowCount < 1) {
           throw Error("Error with accepting contribution");
         }

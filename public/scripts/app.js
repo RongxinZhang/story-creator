@@ -23,7 +23,7 @@ $(function() {
           <div>${contribution.created_at}</div>
           <div><i class="fas fa-thumbs-up"></i></div>
           <div class="likecount">${contribution.like_count}</div>
-          <div><button type="submit">Append to Story</div>
+          <div><button id="append" type="submit">Append to Story</div>
         </footer>
       </article>
     `);
@@ -36,6 +36,16 @@ $(function() {
           loadPosts();
         })
     })
+
+    $contribution.find('#append').on('click', (event) => {
+      event.preventDefault();
+      // $.put(`/api/story/${storyId}/contributions/append/${contribution.id}`)
+      return $.ajax({
+        method: 'PUT',
+        url: `/api/story/${storyId}/contributions/append/${contribution.id}`
+      })
+    })
+
     return $contribution;
   }
 
