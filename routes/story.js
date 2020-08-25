@@ -6,12 +6,36 @@
  */
 
 const express = require('express');
+const { query } = require('express');
 const router  = express.Router();
+
+const isStoryComplete = (db)=>{
+  return function(req, res, next) {
+    const query = `SELECT is_complete FROM stories WHERE storyurl_id = $1;`;
+    const inputValues = [ req.params.storyId ];
+
+    db.query(query, inputValues)
+      .then(data => {
+        if (data.rows[0] === false) {
+          next();
+        } else {
+          throw Error("Story already completed");
+        }
+      })
+      .catch(err => {
+        res
+          .status(403)
+          .json({ error: err.message });
+      });
+  };
+};
 
 const getContributions = (db)=>{
   router.get("/:storyId/contributions", (req,res)=>{
     let query = ` SELECT contributions.user_id AS user_id, 
                   contributions.user_id AS user_id, 
+                  contributions.id AS id, 
+                  contributions.accepted AS accepted, 
                   contributions.content AS content, 
                   contributions.created_at AS created_at, 
                   count(contribution_likes.id) AS like_count,
@@ -44,7 +68,7 @@ const getContributions = (db)=>{
  * req.body: content
  */
 const createContribution = (db)=>{
-  router.post("/:storyId/contributions", (req,res)=>{
+  router.post("/:storyId/contributions", isStoryComplete(db), (req,res)=>{
     // TODO: should use user session
     const userId = 1;
 
@@ -71,9 +95,8 @@ const createContribution = (db)=>{
 };
 
 /**
- * Create a contribution for a story
+ * Like a contribution for a story
  * @param {node-postgress} db
- * req.body: content
  */
 const likeContribution = (db)=>{
   router.post("/:storyId/contributions/:contributionId", (req,res)=>{
@@ -99,12 +122,12 @@ const likeContribution = (db)=>{
   });
   return router;
 };
+
 /**
- * Create a contribution for a story
+ * Owner accepts a contribution for a story
  * @param {node-postgress} db
- * req.body: content
  */
-const acceptContribution = (db)=>{
+const appendContribution = (db)=>{
   router.put("/:storyId/contributions/append/:contributionId", (req,res)=>{
     // TODO: should use user session
     const userId = 1;
@@ -141,7 +164,10 @@ const acceptContribution = (db)=>{
   return router;
 };
 
-
+/**
+ * Owner marks a story as complete
+ * @param {node-postgress} db
+ */
 const completeStory = (db)=>{
   router.put("/:storyId/complete", (req,res)=>{
     console.log("complete");
@@ -182,6 +208,6 @@ module.exports = {
   getContributions,
   createContribution,
   likeContribution,
-  acceptContribution,
+  appendContribution,
   completeStory
 };

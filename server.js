@@ -57,10 +57,11 @@ app.use("/api/users", usersRoutes(db));
 // Route to get contributions
 app.use("/api/story", storyRoutes.createContribution(db));
 app.use("/api/story", storyRoutes.getContributions(db));
-app.use("/api/story", storyRoutes.completeStory(db));
 
-app.use("/api/story", storyRoutes.acceptContribution(db));
+app.use("/api/story", storyRoutes.appendContribution(db));
 app.use("/api/story", storyRoutes.likeContribution(db));
+
+app.use("/api/story", storyRoutes.completeStory(db));
 // Mount all resource routes
 
 app.use("/new", createRoutes(db));
