@@ -82,7 +82,6 @@ const createContribution = (db)=>{
 
     db.query(query, inputValues)
       .then(data => {
-        console.log(data);
         res.json(data.rows);
       })
       .catch(err => {
@@ -111,7 +110,6 @@ const likeContribution = (db)=>{
 
     db.query(query, inputValues)
       .then(data => {
-        console.log(data);
         res.json(data.rows);
       })
       .catch(err => {
@@ -170,7 +168,6 @@ const appendContribution = (db)=>{
  */
 const completeStory = (db)=>{
   router.put("/:storyId/complete", (req,res)=>{
-    console.log("complete");
     // TODO: should use user session
     const userId = 1;
   
