@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 
   // stringify user input before parsing in to prevent XSS
   const escape = function(str) {
@@ -9,7 +9,7 @@ $(document).ready(function() {
   // sample input object "contribution":
   // { username: "skater_boy", content: "He stood up and stared", created_at: 2020-07-28 00:00:00, }
   const createPostElement = function(contribution) {
-    let $contribution = `
+    let $contribution = $(`
       <article>
         <header>
           <div>
@@ -21,10 +21,19 @@ $(document).ready(function() {
         </div>
         <footer>
           <div>${contribution.created_at}</div>
-          <div>//insert like icon</div>
+          <div><i class="fas fa-thumbs-up"></i></div>
+          <div class="likecount">${contribution.like_count}</div>
+          <div><button type="submit">Append to Story</div>
         </footer>
       </article>
-    `;
+    `);
+
+    $contribution.find('.fa-thumbs-up').on('click', (event) => {
+      event.preventDefault();
+      // console.log(event.target.attr('data-id'));
+      $.post(`/api/story/${storyId}/contributions/${contribution.id}`)
+  
+    })
     return $contribution;
   }
 
@@ -76,6 +85,7 @@ $(document).ready(function() {
        })
     }
   })
+
 });
 
 
