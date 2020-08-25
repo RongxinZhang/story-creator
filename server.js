@@ -39,14 +39,20 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
+const userLogin = require("./routes/login");
+const submitLogin = require("./routes/submitLogin");
 const storyRoutes = require("./routes/story");
 const toHomePage = require("./routes/home");
 const renderHomePage = require("./routes/homeRender");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
+const registerUser = require("./routes/register");
+const registered = require("./routes/submitRegister");
 
 /**
  * API ROUTES
@@ -60,12 +66,17 @@ app.use("/api/story", storyRoutes.appendContribution(db));
 app.use("/api/story", storyRoutes.likeContribution(db));
 
 app.use("/api/story", storyRoutes.completeStory(db));
-// Mount all resource routes
 
-// Mount all resource routes
+// Registration and login
+app.use("/register", registerUser(db));
+app.use("/api/register", registered.submitRegister(db));
+app.use("/login",userLogin.toLogin(db));
+app.use("/api/login", submitLogin.toSubmit(db));
+
 // home pages
 app.use("/", renderHomePage(db));
 app.use("/stories", toHomePage(db));
+
 // create and update story
 app.use("/new", createRoutes(db));
 app.use("/update", updateRoutes(db));
