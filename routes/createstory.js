@@ -36,7 +36,8 @@ module.exports = (db) => {
     return db.query(queryString, queryParams)
       .then(result => {
         const story = result.rows[0];
-        res.send({story: result.rows[0], message: "successfully created"})
+        // res.send({story: result.rows[0], message: "successfully created"})
+           res.redirect(`/story/${story.storyurl_id}`)
         // res.render('story', { story: story })
       })
       .catch(err => {
