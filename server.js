@@ -40,19 +40,24 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
+
+
 // Separated Routes for each Resource
 const toHomePage = require("./routes/home");
 const renderHomePage =require("./routes/homeRender");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
 
-// Mount all resource routes
+
 // home pages
 app.use("/", renderHomePage(db));
 app.use("/stories", toHomePage(db));
 // create and update story
 app.use("/new", createRoutes(db));
 app.use("/update", updateRoutes(db));
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
