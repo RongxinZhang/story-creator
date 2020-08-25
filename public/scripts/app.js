@@ -37,9 +37,11 @@ $(document).ready(function() {
     }
   };
 
+  // get storyurl_id as storyId from url
+  const url = $(location).attr("href");
+  const storyId = url.slice(-6);
+
   const loadPosts = function() {
-    const url = $(location).attr("href");
-    const storyId = url.slice(-6);
     $.getJSON(`/api/story/${storyId}/contributions`)
       .then((posts) => {
         renderPosts(posts);
@@ -48,6 +50,32 @@ $(document).ready(function() {
 
   // initial load of all contribution posts in db
   loadPosts();
+
+  // POST request to submit contribution
+  const $form = $('#new-post-form');
+  const $errorMsg = $('.errormsg');
+  
+  $form.on('submit', (event) => {
+    event.preventDefault();
+
+    const serialized = $form.serialize();
+    const $input = $('textarea').val();
+
+    if (!$input) {
+      $errorMsg.hide(350);
+      $('#emptyfield').slideDown(700);
+    } else {
+      console.log(serialized)
+      $errorMsg.hide(350);
+      // empty input field upon submission
+      $form.trigger('reset');
+      // POST request in query string format
+      $.post(`/api/story/${storyId}/contributions`, serialized)
+       .then(() => {
+         loadPosts();
+       })
+    }
+  })
 });
 
 

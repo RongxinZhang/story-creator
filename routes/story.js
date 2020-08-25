@@ -50,7 +50,6 @@ const getContributions = (db)=>{
     const inputValues = [ req.params.storyId ];
     db.query(query, inputValues)
       .then(data => {
-        console.log(data.rows)
         res.json(data.rows);
       })
       .catch(err => {

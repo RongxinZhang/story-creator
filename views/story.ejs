@@ -32,7 +32,8 @@
       </div>
     </section>
     <section>
-      <form action="/api/story/<%= story.storyurl_id %>/contributions" method="POST">
+      <p class="errormsg" id="emptyfield"><i class="fas fa-exclamation-triangle"></i> please enter text <i class="fas fa-exclamation-triangle"></i></i></p>
+      <form id="new-post-form" action="/api/story/<%= story.storyurl_id %>/contributions" method="POST">
         <label for="post-text">What would you like to add to this story?</label>
         <textarea type="text" name="content" id="post-text"></textarea>
         <div>
