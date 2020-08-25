@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(() => {
 
   // stringify user input before parsing in to prevent XSS
@@ -32,15 +31,3 @@ $(() => {
   }
   return $contribution;
 });
-=======
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     for(user of users) {
-//       $("<div>").text(user.name).appendTo($("body"));
-//     }
-//   });;
-// });
->>>>>>> master
