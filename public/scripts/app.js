@@ -1,4 +1,4 @@
-$(() => {
+$(document).ready(function() {
 
   // stringify user input before parsing in to prevent XSS
   const escape = function(str) {
@@ -6,12 +6,9 @@ $(() => {
     p.appendChild(document.createTextNode(str));
     return p.innerHTML;
   };
-
-
   // sample input object "contribution":
   // { username: "skater_boy", content: "He stood up and stared", created_at: 2020-07-28 00:00:00, }
-
-  const createPostElement = function (contribution) {
+  const createPostElement = function(contribution) {
     let $contribution = `
       <article>
         <header>
@@ -28,6 +25,29 @@ $(() => {
         </footer>
       </article>
     `;
+    return $contribution;
   }
-  return $contribution;
+
+  const renderPosts = function(posts) {
+    $('#posts-container').empty();
+
+    for (const post of posts) {
+      const $post = createPostElement(post);
+      $('#posts-container').prepend($post);
+    }
+  };
+
+  const loadPosts = function() {
+    const url = $(location).attr("href");
+    const storyId = url.slice(-6);
+    $.getJSON(`/api/story/${storyId}/contributions`)
+      .then((posts) => {
+        renderPosts(posts);
+      });
+  }
+
+  // initial load of all contribution posts in db
+  loadPosts();
 });
+
+

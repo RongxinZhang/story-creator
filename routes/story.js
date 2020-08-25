@@ -48,9 +48,9 @@ const getContributions = (db)=>{
                   (SELECT id FROM stories WHERE storyurl_id = $1 )
                 ORDER BY contributions.created_at DESC;`;
     const inputValues = [ req.params.storyId ];
-
     db.query(query, inputValues)
       .then(data => {
+        console.log(data.rows)
         res.json(data.rows);
       })
       .catch(err => {
@@ -78,7 +78,11 @@ const createContribution = (db)=>{
               (SELECT id FROM stories WHERE storyurl_id = $2), 
             $3) RETURNING *;`;
 
-    const inputValues = [ userId, req.params.storyId, req.body.content ];
+    const inputValues = [ 
+      userId, 
+      req.params.storyId, 
+      req.body.content
+    ];
 
     db.query(query, inputValues)
       .then(data => {

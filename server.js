@@ -17,6 +17,7 @@ const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
 
+app.use(express.static("public"));
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -51,6 +52,7 @@ const toHomePage = require("./routes/home");
 const renderHomePage = require("./routes/homeRender");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
+const displayStory = require("./routes/storytop");
 const registerUser = require("./routes/register");
 const registered = require("./routes/submitRegister");
 
@@ -80,6 +82,7 @@ app.use("/stories", toHomePage(db));
 // create and update story
 app.use("/new", createRoutes(db));
 app.use("/update", updateRoutes(db));
+app.use("/story", displayStory(db));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

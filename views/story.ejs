@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Story</title>
+
+  <!-- External CSS -->
+  <!-- External Font -->
+  <!-- App CSS -->
+  <!-- External JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- App JS -->
+  <script type="text/javascript" src="../scripts/app.js"></script>
 </head>
 <body>
   <header></header>
@@ -23,9 +32,9 @@
       </div>
     </section>
     <section>
-      <form action="/api/story/<%= story.storyurl_id %>" method="POST">
+      <form action="/api/story/<%= story.storyurl_id %>/contributions" method="POST">
         <label for="post-text">What would you like to add to this story?</label>
-        <textarea type="text" name="text" id="post-text"></textarea>
+        <textarea type="text" name="content" id="post-text"></textarea>
         <div>
           <button type="submit">Add My Addition</button>
         </div>
