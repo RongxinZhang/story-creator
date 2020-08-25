@@ -39,13 +39,21 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Separated Routes for each Resource
 const toHomePage = require("./routes/home");
 const renderHomePage =require("./routes/homeRender");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
+const registerUser =require("./routes/register");
+const registered =require("./routes/submitRegister");
 
+
+app.use("/register", registerUser(db));
+app.use("/api/register", registered.submitRegister(db));
 // Mount all resource routes
 // home pages
 app.use("/", renderHomePage(db));
