@@ -37,7 +37,9 @@ module.exports = (db) => {
           row.created_at = moment(row.created_at).format("MMM Do");
         }
 
-        res.render('stories', { stories: results });
+        const responseObj = { firstStory: results.splice(0,1), stories: results };
+        console.log(responseObj);
+        res.render('stories', responseObj);
       })
       .catch(err => {
         console.log(err);

@@ -9,6 +9,23 @@
 
 <body>
   <section>
+    <div class="first-story-container">
+      <div class="thumbnail-container">
+        <div class="image"style="background-image:url('<%= firstStory[0].photo_url %>');"> </div>
+      </div>
+      <div class="text-container">
+        <a href="/story/<%= firstStory[0].url_id %>">
+          <h1><%= firstStory[0].title %></h1>
+          <h3> The story of the chicken who crossed the road, and found what it was always looking for. The age old mystery of why...</h3>
+        </a>
+          <h4>By <%= firstStory[0].created_by %></h4>
+          <h4><%= firstStory[0].total_contributions %> contributions</h4>
+          <h5><%= firstStory[0].created_at %></h5>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <div id="title">
       Latest
     </div>
