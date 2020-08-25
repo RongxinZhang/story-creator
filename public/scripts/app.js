@@ -32,7 +32,9 @@ $(function() {
       event.preventDefault();
       // console.log(event.target.attr('data-id'));
       $.post(`/api/story/${storyId}/contributions/${contribution.id}`)
-  
+        .then(() => {
+          loadPosts();
+        })
     })
     return $contribution;
   }
