@@ -37,16 +37,12 @@ app.use(bodyParser.urlencoded({
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const storiesRoutes = require("./routes/stories");
 const registerUser =require("./routes/register");
 const registered =require("./routes/submitRegister");
 
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/stories", storiesRoutes.createStory(db));
 app.use("/api/register", registered.submitRegister(db));
 app.use("/register", registerUser(db));
 
