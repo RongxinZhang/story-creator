@@ -43,20 +43,25 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+
+
 const userLogin = require("./routes/login");
 const submitLogin =require("./routes/submitLogin");
+
+// Separated Routes for each Resource
 const toHomePage = require("./routes/home");
 const renderHomePage =require("./routes/homeRender");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
-const registerUser = require("./routes/register");
-const registered = require("./routes/submitRegister");
+const registerUser =require("./routes/register");
+const registered =require("./routes/submitRegister");
 
 app.use("/login",userLogin.toLogin(db));
 app.use("/api/login", submitLogin.toSubmit(db));
 
 app.use("/register", registerUser(db));
 app.use("/api/register", registered.submitRegister(db));
+// Mount all resource routes
 // home pages
 app.use("/", renderHomePage(db));
 app.use("/stories", toHomePage(db));
