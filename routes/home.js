@@ -18,6 +18,7 @@ module.exports = (db) => {
     stories.is_complete AS status, 
     stories.created_at AS created_at,
     stories.photo_url,
+    stories.storyurl_id AS url_id,
     COUNT(contributions.*) AS total_contributions,
     users.username AS created_by
     FROM stories
