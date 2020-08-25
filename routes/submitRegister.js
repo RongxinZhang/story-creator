@@ -11,12 +11,13 @@ const router = express.Router();
 
 const submitRegister = (db) => {
   router.post('/', (req, res) => {
-    const queryString1 =`SELECT id FROM users WHERE username =$1;`
+    const queryString1 =`SELECT username FROM users WHERE username =$1;`
     const inputField1 = [req.body.username];
      db.query(queryString1, inputField1)
      .then(data => {
+       console.log(data.rows);
       const users = data.rows;
-      if(data.rows){
+      if(data.rows[0]){
         res.send("error: duplicate username");
       }else{
         const queryString = `INSERT INTO users ( username, first_name, last_name, email, password) VALUES($1, $2, $3, $4, $5)
