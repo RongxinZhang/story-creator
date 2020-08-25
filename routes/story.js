@@ -137,7 +137,7 @@ const appendContribution = (db)=>{
 
     const updateContributionQuery = `UPDATE contributions
           SET accepted = TRUE
-          WHERE id = $1 AND story_id = (SELECT owner_id FROM stories WHERE storyurl_id = $2)
+          WHERE id = $1 AND story_id = (SELECT id FROM stories WHERE storyurl_id = $2)
           RETURNING *;`;
     // const updateStoryQuery = `
     //   UPDATE stories

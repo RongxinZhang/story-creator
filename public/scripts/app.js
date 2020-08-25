@@ -62,9 +62,19 @@ $(function() {
   const url = $(location).attr("href");
   const storyId = url.slice(-6);
 
+  const appendContent = function(posts){
+    // wrap all this in a function
+    for (const post of posts) {
+      if (post.accepted) {
+        $('.appended-content')[0].append(post.content);
+      }
+    }
+  };
+
   const loadPosts = function() {
     $.getJSON(`/api/story/${storyId}/contributions`)
       .then((posts) => {
+        appendContent(posts);
         renderPosts(posts);
       });
   }
