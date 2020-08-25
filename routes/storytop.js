@@ -8,21 +8,24 @@ module.exports = (db) => {
       content,
       is_complete,
       photo_url,
-      stories.created_at,
-      users.username
+      stories.created_at AS created_at,
+      users.username AS username,
+      owner_id,
+      storyurl_id
       FROM stories
       JOIN users ON owner_id = users.id
+      WHERE stories.storyurl_id = $1
     ;`;
 
     const queryParams = [
-
+      req.params.storyId
     ];
 
     return db.query(queryString, queryParams)
-      //if not complete
       .then(data => {
         const results = data.rows[0];
-        res.render('story', {story: results})
+        console.log(results)
+        res.render('story', { story: results })
       })
   })
 

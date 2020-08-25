@@ -47,7 +47,7 @@ const usersRoutes = require("./routes/users");
 // const storiesRoutes = require("./routes/stories");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
-const storyRoutes = require("./routes/story");
+const storyRoutes = require("./routes/storytop");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));

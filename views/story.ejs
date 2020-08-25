@@ -12,6 +12,24 @@
   <main>
     <section>
       <!-- story section -->
+      <div>
+        <h3><%= story.title %></h3>
+      </div>
+      <div>
+        <img src='<%= story.photo_url %>' />
+      </div>
+      <div>
+        <p><%= story.content %></p>
+      </div>
+    </section>
+    <section>
+      <form action="/api/story/<%= story.storyurl_id %>" method="POST">
+        <label for="post-text">What would you like to add to this story?</label>
+        <textarea type="text" name="text" id="post-text"></textarea>
+        <div>
+          <button type="submit">Add My Addition</button>
+        </div>
+      </form>
     </section>
     <section id="posts-container">
       <!-- user generated contributions from database -->
