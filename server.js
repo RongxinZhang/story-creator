@@ -43,6 +43,11 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 1db0b667599e3a4c99cc78a733a33dae5a5f6499
 const userLogin = require("./routes/login");
 const submitLogin =require("./routes/submitLogin");
 
