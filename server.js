@@ -76,8 +76,8 @@ app.use("/login",userLogin.toLogin(db));
 app.use("/api/login", submitLogin.toSubmit(db));
 
 // home pages
-app.use("/", renderHomePage(db));
-app.use("/stories", toHomePage(db));
+app.use("/", toHomePage(db));
+// app.use("/stories", toHomePage(db));
 
 // create and update story
 app.use("/new", createRoutes(db));
