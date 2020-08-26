@@ -12,6 +12,12 @@ $(function() {
   // sample input object "contribution":
   // { username: "skater_boy", content: "He stood up and stared", created_at: 2020-07-28 00:00:00, }
   const createPostElement = function(contribution) {
+    
+    // condition to check for append button.
+    const appendButton = $("#markcomplete")[0]?
+    `<div class="append-btn">Append to Story</div>`:
+    ``;
+
     let $contribution = $(`
       <article class="contribution-container">
         <header>
@@ -26,7 +32,7 @@ $(function() {
           <div>${contribution.created_at}</div>
           <div class="like-btn"><i class="fas fa-thumbs-up"></i></div>
           <div class="likecount">${contribution.like_count}</div>
-          <div class="append-btn">Append to Story</div>
+          ${appendButton}
         </footer>
       </article>
     `);

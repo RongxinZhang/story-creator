@@ -3,6 +3,10 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/:storyId", (req, res) => {
+
+    // TEMPL SHOULD REMOVE
+    const userId = 1;
+
     const queryString = `
       SELECT title, 
       content,
@@ -24,8 +28,13 @@ module.exports = (db) => {
     return db.query(queryString, queryParams)
       .then(data => {
         const results = data.rows[0];
-        // console.log(results)
-        res.render('story', { story: results })
+        let isOwner = false;
+
+        if (userId === data.rows[0].owner_id){
+          isOwner = true;
+        }
+        console.log(isOwner)
+        res.render('story', { story: results, isOwner})
       })
   })
 
