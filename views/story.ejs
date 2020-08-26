@@ -27,6 +27,7 @@
       <% if (!story.is_complete && isOwner) { %>
         <div>
           <button id="markcomplete" type="submit">Mark Completed</button>
+          <a id="edit-button" href="/update/<%= story.storyurl_id %>">Edit Story</a>
         </div>
       <% } %>
       <div>
