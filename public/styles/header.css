@@ -56,11 +56,19 @@
 }
 
 .topnav .rightnav .register-btn {
-  padding-right: 0px;
+  padding-right: 20px;
 }
 
 .topnav .rightnav .register-btn:hover {
   color: #159615;
+}
+
+.topnav .rightnav .logout-btn:hover {
+  color: #159615;
+}
+
+.topnav .rightnav .logout-btn {
+  display: none;
 }
 
 @media only screen and (max-width: 667px) {

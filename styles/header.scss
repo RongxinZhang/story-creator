@@ -64,13 +64,18 @@
     color: rgb(21, 150, 21);
   }
   .topnav .rightnav .register-btn{
-    padding-right: 0px;
+    padding-right: 20px;
   }
 
   .topnav .rightnav .register-btn:hover{
     color: rgb(21, 150, 21);
   }
-
+  .topnav .rightnav .logout-btn:hover{
+    color: rgb(21, 150, 21);
+  }
+  .topnav .rightnav .logout-btn{
+    display:none;
+  }
 
   @media only screen 
   and (max-width: 667px) { 
