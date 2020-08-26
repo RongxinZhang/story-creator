@@ -1,0 +1,10 @@
+.like-btn, .append-btn {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #000000;
+  display: inline-block;
+}
+
+.contribution-container {
+  border: 1px solid black;
+}

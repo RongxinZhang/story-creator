@@ -9,26 +9,32 @@ const express = require('express');
 const { query } = require('express');
 const router  = express.Router();
 
-// const isStoryComplete = (db)=>{
-//   return function(req, res, next) {
-//     const query = `SELECT is_complete FROM stories WHERE storyurl_id = $1;`;
-//     const inputValues = [ req.params.storyId ];
+/**
+ * Middleware: Check if story is completed 
+ * @param {node-postgress} db 
+ */
+const isStoryComplete = (db)=>{
+  return function(req, res, next) {
+    const query = `SELECT is_complete FROM stories WHERE storyurl_id = $1;`;
+    const inputValues = [ req.params.storyId ];
 
-//     db.query(query, inputValues)
-//       .then(data => {
-//         if (data.rows[0] === false) {
-//           next();
-//         } else {
-//           throw Error("Story already completed");
-//         }
-//       })
-//       .catch(err => {
-//         res
-//           .status(403)
-//           .json({ error: err.message });
-//       });
-//   };
-// };
+    db.query(query, inputValues)
+      .then(data => {
+        console.log(data.rows[0])
+        if (!data.rows[0].is_complete) {
+          next();
+        } else {
+          throw Error("Story already completed");
+        }
+      })
+      .catch(err => {
+        res
+          .status(403)
+          .json({ error: err.message });
+      });
+  };
+};
+
 
 const getContributions = (db)=>{
   router.get("/:storyId/contributions", (req,res)=>{
@@ -48,7 +54,6 @@ const getContributions = (db)=>{
                   (SELECT id FROM stories WHERE storyurl_id = $1 )
                 ORDER BY contributions.created_at DESC;`;
     const inputValues = [ req.params.storyId ];
-
     db.query(query, inputValues)
       .then(data => {
         res.json(data.rows);
@@ -68,7 +73,7 @@ const getContributions = (db)=>{
  * req.body: content
  */
 const createContribution = (db)=>{
-  router.post("/:storyId/contributions", (req,res)=>{
+  router.post("/:storyId/contributions", isStoryComplete(db), (req,res)=>{
     // TODO: should use user session
     const userId = 1;
 
@@ -78,7 +83,11 @@ const createContribution = (db)=>{
               (SELECT id FROM stories WHERE storyurl_id = $2), 
             $3) RETURNING *;`;
 
-    const inputValues = [ userId, req.params.storyId, req.body.content ];
+    const inputValues = [ 
+      userId, 
+      req.params.storyId, 
+      req.body.content
+    ];
 
     db.query(query, inputValues)
       .then(data => {
@@ -98,7 +107,7 @@ const createContribution = (db)=>{
  * @param {node-postgress} db
  */
 const likeContribution = (db)=>{
-  router.post("/:storyId/contributions/:contributionId", (req,res)=>{
+  router.post("/:storyId/contributions/:contributionId",isStoryComplete(db), (req,res)=>{
     // TODO: should use user session
     const userId = 1;
 
@@ -113,6 +122,7 @@ const likeContribution = (db)=>{
         res.json(data.rows);
       })
       .catch(err => {
+        // console.log(err)
         res
           .status(500)
           .json({ error: err.message });
@@ -126,26 +136,30 @@ const likeContribution = (db)=>{
  * @param {node-postgress} db
  */
 const appendContribution = (db)=>{
-  router.put("/:storyId/contributions/append/:contributionId", (req,res)=>{
+  router.put("/:storyId/contributions/append/:contributionId",isStoryComplete(db), (req,res)=>{
     // TODO: should use user session
     const userId = 1;
 
-    let selectStoryQuery = `SELECT owner_id FROM stories WHERE storyurl_id = $1`;
+    const selectStoryQuery = `
+      SELECT owner_id 
+      FROM stories 
+      WHERE storyurl_id = $1;
+      `;
 
-    let updateContributionDuery = `UPDATE contributions
-          SET accepted = TRUE
-          WHERE id = $1 AND story_id = (SELECT owner_id FROM stories WHERE storyurl_id = $2)
-          RETURNING *;`;
-
-    // const inputValues = [ userId, req.params.storyId, req.body.content ];
-
+    const updateContributionQuery = `
+      UPDATE contributions
+      SET accepted = TRUE
+      WHERE id = $1 
+      AND story_id = (SELECT id FROM stories WHERE storyurl_id = $2)
+      RETURNING *
+      ;`;
     db.query(selectStoryQuery, [req.params.storyId])
       .then(data => {
         if (userId !== data.rows[0].owner_id) {
           throw Error("Creator is not owner of story");
         }
         // Next request
-        return db.query(updateContributionDuery, [req.params.contributionId, req.params.storyId]);
+        return db.query(updateContributionQuery, [req.params.contributionId, req.params.storyId]);
       })
       .then((dataTwo)=>{
         if (dataTwo.rowCount < 1) {
@@ -154,6 +168,7 @@ const appendContribution = (db)=>{
         res.json(dataTwo.rows);
       })
       .catch(err => {
+        // console.log(err)
         res
           .status(500)
           .json({ error: err.message });
@@ -167,7 +182,7 @@ const appendContribution = (db)=>{
  * @param {node-postgress} db
  */
 const completeStory = (db)=>{
-  router.put("/:storyId/complete", (req,res)=>{
+  router.put("/:storyId/complete",isStoryComplete(db), (req,res)=>{
     // TODO: should use user session
     const userId = 1;
   
@@ -186,7 +201,7 @@ const completeStory = (db)=>{
         // Next request
         return db.query(updateContributionDuery, [req.params.storyId, userId]);
       })
-      .then((dataTwo)=>{
+      .then((dataTwo) => {
         if (dataTwo.rowCount < 1) {
           throw Error("Error with completing story");
         }

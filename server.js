@@ -38,6 +38,7 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
   extended: true
@@ -51,6 +52,7 @@ const toHomePage = require("./routes/home");
 const renderHomePage = require("./routes/homeRender");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
+const displayStory = require("./routes/storytop");
 const registerUser = require("./routes/register");
 const registered = require("./routes/submitRegister");
 
@@ -80,6 +82,7 @@ app.use("/", toHomePage(db));
 // create and update story
 app.use("/new", createRoutes(db));
 app.use("/update", updateRoutes(db));
+app.use("/story", displayStory(db));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
