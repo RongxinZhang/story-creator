@@ -96,5 +96,31 @@ section {
 
 .first-story-container .text-container h1 {
   font-size: 3em;
+  line-height: 1em;
   margin: 25px 0;
+}
+
+@media only screen and (max-width: 667px) {
+  section {
+    padding: 20px;
+    max-width: 800px;
+    margin-left: 0px;
+  }
+  .story-container {
+    align-items: flex-start;
+    margin: 20px 0;
+  }
+  .story-container .text-container {
+    margin-right: 15px;
+  }
+  .story-container .thumbnail-container {
+    margin-top: 20px;
+    height: 80px;
+    min-width: 80px;
+    margin-left: auto;
+  }
+  .story-container .thumbnail-container .image {
+    height: 100%;
+    width: 100%;
+  }
 }

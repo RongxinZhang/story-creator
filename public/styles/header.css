@@ -34,7 +34,7 @@
 .rightnav {
   display: flex;
   flex-direction: row;
-  padding-right: calc(5% + 100px);
+  padding-right: calc(5% + 70px);
 }
 
 .topnav .leftnav .create-story-btn {
@@ -43,7 +43,7 @@
   font-weight: 700;
 }
 
-.topnav .leftnav .story:hover {
+.topnav .leftnav .create-story-btn:hover {
   font-weight: 600;
 }
 
@@ -51,10 +51,23 @@
   color: black;
 }
 
-.topnav .rightnav .login:hover {
+.topnav .rightnav .login-btn:hover {
   color: #159615;
 }
 
-.topnav .rightnav .register:hover {
+.topnav .rightnav .register-btn {
+  padding-right: 0px;
+}
+
+.topnav .rightnav .register-btn:hover {
   color: #159615;
+}
+
+@media only screen and (max-width: 667px) {
+  .topnav {
+    padding-left: 20px;
+  }
+  .rightnav {
+    padding-right: 20px;
+  }
 }

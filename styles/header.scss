@@ -47,22 +47,37 @@
   .rightnav{
     display:flex;
     flex-direction: row;
-    padding-right: calc(5% + 100px);
+    padding-right: calc(5% + 70px);
   }
   .topnav .leftnav .create-story-btn{
     font-size:1.8em;
     color:#333;
     font-weight:700;
   }
-  .topnav .leftnav .story:hover{
+  .topnav .leftnav .create-story-btn:hover{
     font-weight: 600;
   }
   .topnav .leftnav .all-stories-btn:hover{
     color:black;
   }
-  .topnav .rightnav .login:hover{
+  .topnav .rightnav .login-btn:hover{
     color: rgb(21, 150, 21);
   }
-  .topnav .rightnav .register:hover{
+  .topnav .rightnav .register-btn{
+    padding-right: 0px;
+  }
+
+  .topnav .rightnav .register-btn:hover{
     color: rgb(21, 150, 21);
+  }
+
+
+  @media only screen 
+  and (max-width: 667px) { 
+    .topnav{
+      padding-left: 20px;
+    }
+    .rightnav{
+      padding-right: 20px;
+    }
   }
