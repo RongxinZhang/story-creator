@@ -108,6 +108,17 @@ $(function() {
     }
   })
 
+  // Mark story complete
+  $('#markcomplete').on('click', (event) => {
+    event.preventDefault();
+    $form.hide(300);
+    
+    return $.ajax({
+      method: 'PUT',
+      url: `/api/story/${storyId}/complete`
+    })
+
+  })
 });
 
 
