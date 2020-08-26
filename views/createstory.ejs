@@ -9,10 +9,10 @@
 <body>
   <%- include('_header') %>
   <section class='pt-60 create-story'>
-    <div class="publish-btn">
-      <button type="submit">Publish</button>
-    </div>
     <form method="POST" action="/new/story" >
+      <div class="publish-btn">
+        <button type="submit">Publish</button>
+      </div>
       <div class="section-inner">
         <input class="new-title" type="text" name="title" placeholder="Title">   
       </div>
