@@ -10,14 +10,16 @@
   <body>
     <%- include('_header') %>
     <section class='pt-60 '>
+      <div class='wrapper'>
       <h1>Please login here</h1>
       <form action="/api/login" method ='POST' class='login-form '>
           <label for="">Email:</label>
-          <input type="email" name ="email">
-          <label for="">password:</label>
-          <input type="password" name ='password'>
-        <input type="submit">
+          <input type="email" name ="email" class='input'>
+          <label for="">Password:</label>
+          <input type="password" name ='password' class='input'>
+        <input type="submit" class='submit'>
       </form>
+    </div>
     </section>
   </body>
 </html>

@@ -27,4 +27,40 @@ section .alert{
   padding:5px;
   display:none;
 }
+h1{
+  text-align:center;
+}
+section form label{
+  margin-top: 20px;
+  margin-left:auto;
+  margin-right:auto;
+}
+section form .input{
+  margin-left:auto;
+  margin-right:auto;
+  border-style: none;
+}
 
+section form .submit{
+  margin-top:20px;
+  border: 2px solid grey;
+  border-radius:30px;
+  font-size:23px;
+  padding-right:15px;
+  padding-left:15px;
+  opacity:50%;
+  margin-left:auto;
+  margin-right:auto;
+}
+section form .submit:hover{
+  
+  cursor:pointer;
+  opacity:100%;
+}
+// div.wrapper{
+//   border:1px solid black;
+//   display:flex;
+//   flex-direction: column;
+//   justify-content: center;
+  
+// }
