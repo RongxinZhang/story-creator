@@ -2,14 +2,16 @@
 <html lang="en">
 
 <head>
+  <title>Stories</title>
   <%- include('partials/_head') %>
   <link rel="stylesheet" href="/styles/stories.css" type="text/css" />
-  <title>Stories</title>
+  <%- include('_header') %>
+  <%- include('head') %>
 </head>
 
 <body>
-  <section>
-    <div class="first-story-container">
+  <section class="main-story">
+    <div class="story-container first-story-container">
       <div class="thumbnail-container">
         <div class="image"style="background-image:url('<%= firstStory[0].photo_url %>');"> </div>
       </div>
@@ -25,7 +27,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="stories">
     <div id="title">
       Latest
     </div>
