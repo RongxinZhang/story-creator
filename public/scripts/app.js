@@ -37,10 +37,8 @@ $(function() {
       </article>
     `);
 
-    console.log($contribution.find('.like-btn'))
     $contribution.find('.like-btn').on('click', function(event){
       event.preventDefault();
-      console.log("TEST",$(this));
       $.post(`/api/story/${storyId}/contributions/${contribution.id}`)
         .then(() => {
           loadPosts();
