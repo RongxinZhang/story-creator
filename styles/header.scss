@@ -1,0 +1,69 @@
+/* Debugging Styling. Remove for production */ 
+// * { outline: 2px none  red ; row-gap: 5px; column-gap: 5px;}
+//  * * { outline: 2px none  green }
+//  * * * { outline: 2px  solid orange }
+//   * * * * { outline: 2px  solid blue }
+//    * * * * * { outline: 2px  solid red }
+//     * * * * * * { outline: 2px  solid green }
+//      * * * * * * * { outline: 2px  solid orange }
+//       * * * * * * * * { outline: 2px  solid blue } 
+
+    //  html{
+    //     padding:1em;
+    //   }
+    // body{
+    //   margin:0;
+    // }
+   .topnav{
+    overflow: hidden;
+    float:left;
+    background-color:white;
+    width:100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom:20px;
+    height:60px;
+    display:flex;
+    justify-content: space-between;
+    box-shadow: 5px 2px 7px #888888;
+  }
+  .topnav a{
+    text-decoration: none;
+    color:rgba(0, 0, 0, 0.685);
+    padding:10px;
+   
+    line-height:33px;
+    padding-left:20px;
+    padding-right:20px;
+  }
+  
+  .leftnav{
+    display:flex;
+    flex-direction:row;
+  }
+  .rightnav{
+    display:flex;
+    flex-direction: row;
+  }
+  .topnav .leftnav .story{
+    font-size:20px;
+    color:black;
+    font-weight:500;
+  }
+  .topnav .leftnav .story:hover{
+    font-weight: 600;
+  }
+  .topnav .leftnav .stories:hover{
+    color:black;
+  }
+  .topnav .rightnav .login:hover{
+    color: rgb(21, 150, 21);
+  }
+  .topnav .rightnav .register:hover{
+    color: rgb(21, 150, 21);
+  }
+
+  .pt-60{
+    padding-top:60px;
+  }

@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>Edit Your Story</title>
+  <%- include('head') %>
 </head>
 <body>
-  <form method="POST" action="/update/<%= story.storyurl_id %>">
-    <label>Edit Your Story</label>
-    
-    <div>
-      <input type="text" name="title" value="<%= story.title %>">   
-    </div>
-
-    <div>
-      <input type="textarea" name="content" value="<%= story.content %>">
-    </div>
-
-    <div>
-      <input type="url" name="photo_url" placeholder="Insert a photo" value="<%= story.photo_url %>">
-    </div>
-
-    <div>
-      <button type="submit">Submit Changes</button>
-      <a href='#'>Cancel</a>
-    </div>
-
-  </form>
+  <%- include('_header') %>
+  <section class='pt-60'>
+    <form method="POST" action="/update/<%= story.storyurl_id %>">
+      <label>Edit Your Story</label>
+      
+      <div>
+        <input type="text" name="title" value="<%= story.title %>">   
+      </div>
+  
+      <div>
+        <input type="textarea" name="content" value="<%= story.content %>">
+      </div>
+  
+      <div>
+        <input type="url" name="photo_url" placeholder="Insert a photo" value="<%= story.photo_url %>">
+      </div>
+  
+      <div>
+        <button type="submit">Submit Changes</button>
+        <a href='#'>Cancel</a>
+      </div>
+  
+    </form>
+  </section>
+  
 </body>
 </html>
