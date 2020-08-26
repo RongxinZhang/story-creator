@@ -40,6 +40,9 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Separated Routes for each Resource
 const userLogin = require("./routes/login");
