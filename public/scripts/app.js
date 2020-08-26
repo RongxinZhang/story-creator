@@ -1,5 +1,8 @@
 $(function() {
-
+  // get storyurl_id as storyId from url
+  const url = $(location).attr("href");
+  const storyId = url.slice(-6);
+  
   // stringify user input before parsing in to prevent XSS
   const escape = function(str) {
     let p = document.createElement('p');
@@ -58,10 +61,6 @@ $(function() {
     }
   };
 
-  // get storyurl_id as storyId from url
-  const url = $(location).attr("href");
-  const storyId = url.slice(-6);
-
   const appendContent = function(posts){
     // wrap all this in a function
     for (const post of posts) {
@@ -96,7 +95,6 @@ $(function() {
       $errorMsg.hide(350);
       $('#emptyfield').slideDown(700);
     } else {
-      console.log(serialized)
       $errorMsg.hide(350);
       // empty input field upon submission
       $form.trigger('reset');

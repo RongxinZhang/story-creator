@@ -116,6 +116,7 @@ const likeContribution = (db)=>{
         res.json(data.rows);
       })
       .catch(err => {
+        // console.log(err)
         res
           .status(500)
           .json({ error: err.message });
@@ -133,30 +134,35 @@ const appendContribution = (db)=>{
     // TODO: should use user session
     const userId = 1;
 
-    const selectStoryQuery = `SELECT owner_id FROM stories WHERE storyurl_id = $1`;
+    const selectStoryQuery = `
+      SELECT owner_id 
+      FROM stories 
+      WHERE storyurl_id = $1;
+      `;
 
-    const updateContributionQuery = `UPDATE contributions
-          SET accepted = TRUE
-          WHERE id = $1 AND story_id = (SELECT id FROM stories WHERE storyurl_id = $2)
-          RETURNING *;`;
-
+    const updateContributionQuery = `
+      UPDATE contributions
+      SET accepted = TRUE
+      WHERE id = $1 
+      AND story_id = (SELECT id FROM stories WHERE storyurl_id = $2)
+      RETURNING *
+      ;`;
     db.query(selectStoryQuery, [req.params.storyId])
       .then(data => {
         if (userId !== data.rows[0].owner_id) {
           throw Error("Creator is not owner of story");
         }
         // Next request
-        console.log(data)
         return db.query(updateContributionQuery, [req.params.contributionId, req.params.storyId]);
       })
       .then((dataTwo)=>{
-        console.log(dataTwo)
         if (dataTwo.rowCount < 1) {
           throw Error("Error with accepting contribution");
         }
         res.json(dataTwo.rows);
       })
       .catch(err => {
+        // console.log(err)
         res
           .status(500)
           .json({ error: err.message });
