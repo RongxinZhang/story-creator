@@ -4,7 +4,7 @@ body {
   background-color: #EEE;
 
   h1 {
-    color: #244751;
+    color: rgba(0, 0, 0, 0.712);
   }
 }
 // create story section:
@@ -31,7 +31,7 @@ h1{
   text-align:center;
 }
 section form label{
-  margin-top: 20px;
+  margin-top: 15px;
   margin-left:auto;
   margin-right:auto;
 }
@@ -57,10 +57,3 @@ section form .submit:hover{
   cursor:pointer;
   opacity:100%;
 }
-// div.wrapper{
-//   border:1px solid black;
-//   display:flex;
-//   flex-direction: column;
-//   justify-content: center;
-  
-// }
