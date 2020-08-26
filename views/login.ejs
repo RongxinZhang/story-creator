@@ -11,14 +11,15 @@
     <%- include('_header') %>
     <section class='pt-60 '>
       <div class='wrapper'>
-      <h1>Please login here</h1>
+      <h2>Sign up with email</h2>
+      <h4>Enter your email address and password to login to your account</h4>
       <div class='alert'>You cannot have empty field</div>
       <form action="/api/login" method ='POST' class='login-form '>
-          <label for="">Email:</label>
+          <label for="">Your email</label>
           <input type="email" name ="email" class='input'>
-          <label for="">Password:</label>
+          <label for="">Your password</label>
           <input type="password" name ='password' class='input'>
-        <input type="submit" class='submit' value='login'>
+        <input type="submit" class='submit' value='continue'>
       </form>
     </div>
     </section>
