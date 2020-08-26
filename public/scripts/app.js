@@ -9,10 +9,9 @@
 //   });;
 // });
 
-// $(document).ready(function(){
-//   $('.submit').click(function(){
-//     $('.register-btn').slideUp(500);
-//     $('.login-btn').slideUp(500);
-//     $('.logout-btn').slideDown(500);
-//   })
-// })
+$(document).ready(function(){
+  $()
+})
+
+
+
