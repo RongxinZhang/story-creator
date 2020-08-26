@@ -124,8 +124,9 @@ $(function() {
     return $.ajax({
       method: 'PUT',
       url: `/api/story/${storyId}/complete`
+    }).then(() => {
+      location.reload(true);
     })
-
   })
 });
 
