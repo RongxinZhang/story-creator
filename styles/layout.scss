@@ -35,6 +35,7 @@ section .alert{
 }
 h1{
   text-align:center;
+  margin-top:100px;
 }
 section form label{
   margin-top: 15px;
@@ -45,6 +46,7 @@ section form .input{
   margin-left:auto;
   margin-right:auto;
   border-style: none;
+  background-color: rgb(241, 236, 224);
 }
 
 section form .submit{
