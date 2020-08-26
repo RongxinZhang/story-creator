@@ -8,6 +8,7 @@
   <!-- External CSS -->
   <!-- External Font -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">  
+  <link rel="stylesheet" href="/styles/story.css">  
   <!-- App CSS -->
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -31,11 +32,11 @@
         </div>
       <% } %>
       <div>
-        <img src='<%= story.photo_url %>' />
+        <img src='<%= story.photo_url %>' width="200px"/>
       </div>
       <div class="story-content">
         <p><%= story.content %></p>
-        <div class="appended-content">
+        <div id="appended-content">
           <!-- accepted contributions -->
         </div>
       </div>

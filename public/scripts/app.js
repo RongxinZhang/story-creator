@@ -13,7 +13,7 @@ $(function() {
   // { username: "skater_boy", content: "He stood up and stared", created_at: 2020-07-28 00:00:00, }
   const createPostElement = function(contribution) {
     let $contribution = $(`
-      <article>
+      <article class="contribution-container">
         <header>
           <div>
             <h5>${contribution.username}</h5>
@@ -24,29 +24,32 @@ $(function() {
         </div>
         <footer>
           <div>${contribution.created_at}</div>
-          <div><i class="fas fa-thumbs-up"></i></div>
+          <div class="like-btn"><i class="fas fa-thumbs-up"></i></div>
           <div class="likecount">${contribution.like_count}</div>
-          <div><button id="append" type="submit">Append to Story</div>
+          <div class="append-btn">Append to Story</div>
         </footer>
       </article>
     `);
 
-    $contribution.find('.fa-thumbs-up').on('click', (event) => {
+    console.log($contribution.find('.like-btn'))
+    $contribution.find('.like-btn').on('click', function(event){
       event.preventDefault();
-      // console.log(event.target.attr('data-id'));
+      console.log("TEST",$(this));
       $.post(`/api/story/${storyId}/contributions/${contribution.id}`)
         .then(() => {
           loadPosts();
         })
     })
 
-    $contribution.find('#append').on('click', (event) => {
+    $contribution.find('.append-btn').on('click', (event) => {
       event.preventDefault();
       // $.put(`/api/story/${storyId}/contributions/append/${contribution.id}`)
       return $.ajax({
         method: 'PUT',
         url: `/api/story/${storyId}/contributions/append/${contribution.id}`
-      })
+      }).then(()=>{
+          loadPosts();
+        })
     })
 
     return $contribution;
@@ -57,15 +60,18 @@ $(function() {
 
     for (const post of posts) {
       const $post = createPostElement(post);
-      $('#posts-container').prepend($post);
+      $('#posts-container').append($post);
     }
   };
 
   const appendContent = function(posts){
     // wrap all this in a function
+    $('#appended-content').empty();
+
     for (const post of posts) {
       if (post.accepted) {
-        $('.appended-content')[0].append(post.content);
+        const $element = $(`<div>${post.content}</div>`)[0]
+        $('#appended-content')[0].prepend($element);
       }
     }
   };
