@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/_head') %>
+  <%- include('_header') %>
+  <%- include('head') %>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">  
+  <link rel="stylesheet" href="/styles/story.css">  
+  
+
+</head>
+<body>
+  <header></header>
+
+  <!-- story specific content here -->
+  <main>
+    <section>
+      <!-- story section -->
+      <div>
+        <h3><%= story.title %></h3>
+      </div>
+      <% if (!story.is_complete && isOwner) { %>
+        <div>
+          <button id="markcomplete" type="submit">Mark Completed</button>
+          <a id="edit-button" href="/update/<%= story.storyurl_id %>">Edit Story</a>
+        </div>
+      <% } %>
+      <div>
+        <img src='<%= story.photo_url %>' width="200px"/>
+      </div>
+      <div class="story-content">
+        <p><%= story.content %></p>
+        <div id="appended-content">
+          <!-- accepted contributions -->
+        </div>
+      </div>
+    </section>
+    <% if (!story.is_complete) { %>
+      <section>
+        <p class="errormsg" id="emptyfield"><i class="fas fa-exclamation-triangle"></i> please enter text <i class="fas fa-exclamation-triangle"></i></i></p>
+        <form id="new-post-form" action="/api/story/<%= story.storyurl_id %>/contributions" method="POST">
+          <label for="post-text">What would you like to add to this story?</label>
+          <textarea type="text" name="content" id="post-text"></textarea>
+          <div>
+            <button type="submit">Add My Addition</button>
+          </div>
+        </form>
+      </section>
+      <section id="posts-container">
+        <!-- user generated contributions from database -->
+      </section>
+    <% } %>
+  </main>
+</body>
+</html>
+  <!-- App JS -->
+  <script type="text/javascript" src="../scripts/app.js"></script>
