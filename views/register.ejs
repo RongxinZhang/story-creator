@@ -11,18 +11,19 @@
     <%- include('_header') %>
     <section class='pt-60'>
       <h1>Please register here</h1>
+      <div class='alert'>You cannot have empty field</div>
       <form action="/api/register", method ='POST' class='login-form'>
          <label for="">Username:</label>
-         <input type="text" name='username'>
+         <input type="text" name='username' class='input'>
          <label for="">First Name:</label>
-         <input type="text" name ='first_name'>
+         <input type="text" name ='first_name' class='input'>
          <label for="">last Name:</label>
-         <input type="text" name ='last_name'>
+         <input type="text" name ='last_name' class='input'>
          <label for="">Email:</label>
-         <input type="email" name ='email'>
+         <input type="email" name ='email' class='input'>
          <label for="">Password:</label>
-         <input type="password" name ='password'>
-         <input type="submit">
+         <input type="password" name ='password' class='input'>
+         <input type="submit" class='submit'>
   
       </form>
     </section>
