@@ -131,9 +131,8 @@ $(function() {
 });
 
 
-
+//to check if user got no input for the login and register
 $(document).ready(function(){
-  // console.log($('section form .input'));
  $('.login-form').submit(function(event){
   $('section form .input').each(function(index, input){
     const data = $(input);
