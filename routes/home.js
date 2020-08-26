@@ -6,15 +6,19 @@
  */
 
 const express = require('express');
+let moment = require('moment');
 const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
+    const OFFSET = 5;
+
     const queryString = `
     SELECT stories.title AS title, 
     stories.is_complete AS status, 
     stories.created_at AS created_at,
     stories.photo_url,
+    stories.storyurl_id AS url_id,
     COUNT(contributions.*) AS total_contributions,
     users.username AS created_by
     FROM stories
@@ -22,11 +26,20 @@ module.exports = (db) => {
     LEFT JOIN contributions ON stories.id = contributions.story_id
     GROUP BY stories.id, users.username
     ORDER BY created_at DESC
+    LIMIT $1
     ;`;
-    return db.query(queryString)
+
+    return db.query(queryString, [OFFSET])
       .then(data => {
-        const results = data.rows;
-        res.render('stories', { stories: results });
+        let results = data.rows;
+
+        for (const row of data.rows) {
+          row.created_at = moment(row.created_at).format("MMM Do");
+        }
+
+        const responseObj = { firstStory: results.splice(0,1), stories: results };
+        console.log(responseObj);
+        res.render('stories', responseObj);
       })
       .catch(err => {
         console.log(err);
@@ -35,6 +48,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+  
   return router;
 };
 

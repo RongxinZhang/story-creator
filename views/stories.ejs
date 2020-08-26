@@ -1,23 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  
   <title>Stories</title>
+  <%- include('partials/_head') %>
+  <link rel="stylesheet" href="/styles/stories.css" type="text/css" />
+  <%- include('_header') %>
   <%- include('head') %>
 </head>
+
 <body>
-  <%- include('_header') %>
-  <section class='pt-60'>
-    <% for (let story of stories) { %>
-    <div>
-      <h4><%= story.status %></h4>
-      <h2><%= story.title %></h2>
-      <img src="<%= story.photo_url %>">
-      <h4>Created By: <%= story.created_by %></h4>
-      <h5>Created On: <%= story.created_at %></h5>
-      <h5>Total Contributions: <%= story.total_contributions %></h5>
+  <section class="main-story">
+    <div class="story-container first-story-container">
+      <div class="thumbnail-container">
+        <div class="image"style="background-image:url('<%= firstStory[0].photo_url %>');"> </div>
+      </div>
+      <div class="text-container">
+        <a href="/story/<%= firstStory[0].url_id %>">
+          <h1><%= firstStory[0].title %></h1>
+          <h3> The story of the chicken who crossed the road, and found what it was always looking for. The age old mystery of why...</h3>
+        </a>
+          <h4>By <%= firstStory[0].created_by %></h4>
+          <h4><%= firstStory[0].total_contributions %> contributions</h4>
+          <h5><%= firstStory[0].created_at %></h5>
+      </div>
     </div>
+  </section>
+
+  <section class="stories">
+    <div id="title">
+      Latest
+    </div>
+    <% for (let story of stories) { %>
+      <div class="story-container">
+        <div class="text-container">
+          <a href="/story/<%= story.url_id %>">
+            <h1><%= story.title %></h1>
+            <h3> The story of the chicken who crossed the road, and found what it was always looking for. The age old mystery of why...</h3>
+          </a>
+            <h4>By <%= story.created_by %></h4>
+            <h4><%= story.total_contributions %> contributions</h4>
+            <h5><%= story.created_at %></h5>
+        </div>
+        <div class="thumbnail-container">
+          <div class="image"style="background-image:url('<%= story.photo_url %>');"> </div>
+        </div>
+      </div>
     <% } %>
   </section>
 </body>
+
+<script src=""></script>
+
 </html>
