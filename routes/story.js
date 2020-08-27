@@ -20,7 +20,7 @@ const isStoryComplete = (db)=>{
 
     db.query(query, inputValues)
       .then(data => {
-        console.log(data.rows[0])
+        // console.log(data.rows[0])
         if (!data.rows[0].is_complete) {
           next();
         } else {

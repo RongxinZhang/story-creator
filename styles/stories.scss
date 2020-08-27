@@ -1,11 +1,13 @@
 section{
-  padding: 100px 100px;
+  padding: 40px 100px 100px 100px;
   max-width: 800px;
   margin-left: 5%;
 }
 
 .main-story{
   padding-bottom:10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .stories{
@@ -55,11 +57,17 @@ section{
       font-weight: 400;
     }
     h5{
-      color: grey
+      color: grey;
+      padding-right: 0.5em;
     }
 
   }
-  
+  .status-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
   .thumbnail-container{
     height: 160px;
     min-width: 160px;
@@ -81,6 +89,7 @@ section{
 .first-story-container{
   display: flex;
   flex-direction: column;
+  
 
   .thumbnail-container{
     height: 350px;
@@ -93,6 +102,10 @@ section{
   }
 
   .text-container{
+    width: 95%;
+    word-wrap: break-word;
+    margin: 0 5%;
+
     h1{
       font-size: 3em;
       line-height: 1em;
