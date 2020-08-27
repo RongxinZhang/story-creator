@@ -17,7 +17,7 @@
       <div class="text-container">
         <a href="/story/<%= firstStory[0].url_id %>">
           <h1><%= firstStory[0].title %></h1>
-          <h3> The story of the chicken who crossed the road, and found what it was always looking for. The age old mystery of why...</h3>
+          <h3><%= (firstStory[0].content).slice(0, 100) %>...</h3>
         </a>
           <h4>By <%= firstStory[0].created_by %></h4>
           <h4><%= firstStory[0].total_contributions %> contributions</h4>
