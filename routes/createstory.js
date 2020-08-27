@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { generateRandomId } = require('../lib/data-helpers.js');
+const authMiddlewareRedirect = require('./authMiddlewareRedirect');
 
 module.exports = (db) => {
   
@@ -9,7 +10,7 @@ module.exports = (db) => {
     res.render('createstory');
   });
     
-  router.post("/story", (req, res) => {
+  router.post("/story", authMiddlewareRedirect(db), (req, res) => {
     // const user_id = req.session.user_id;
     // dummy owner_id
     const user_id = 1;
@@ -32,21 +33,21 @@ module.exports = (db) => {
       req.body.photo_url,
       generateRandomId(6)];
     
-    console.log(queryString, queryParams)
+    console.log(queryString, queryParams);
     return db.query(queryString, queryParams)
       .then(result => {
         const story = result.rows[0];
         // res.send({story: result.rows[0], message: "successfully created"})
-           res.redirect(`/story/${story.storyurl_id}`)
+        res.redirect(`/story/${story.storyurl_id}`);
         // res.render('story', { story: story })
       })
       .catch(err => {
         console.error(err);
         res
-        .status(500)
-        .send("error: ", err);
+          .status(500)
+          .send("error: ", err);
       });
   });
 
   return router;
-}
+};

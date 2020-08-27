@@ -4,14 +4,15 @@ require('dotenv').config();
 // Web server config
 const PORT       = process.env.PORT || 3000;
 const ENV        = process.env.ENV || "development";
+
 const express    = require("express");
 const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
-const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
+const app       = express();
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
@@ -44,17 +45,27 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+// Cookie Session
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+
 // Separated Routes for each Resource
 const userLogin = require("./routes/login");
 const submitLogin = require("./routes/submitLogin");
 const storyRoutes = require("./routes/story");
 const toHomePage = require("./routes/home");
-const renderHomePage = require("./routes/homeRender");
 const createRoutes = require("./routes/createstory");
 const updateRoutes = require("./routes/updatestory");
 const displayStory = require("./routes/storytop");
 const registerUser = require("./routes/register");
 const registered = require("./routes/submitRegister");
+
+const authMiddlewareRedirect = require("./routes/authMiddlewareRedirect");
 
 /**
  * API ROUTES
@@ -81,7 +92,7 @@ app.use("/", toHomePage(db));
 
 // create and update story
 app.use("/new", createRoutes(db));
-app.use("/update", updateRoutes(db));
+app.use("/update", authMiddlewareRedirect(db), updateRoutes(db));
 app.use("/story", displayStory(db));
 
 app.listen(PORT, () => {

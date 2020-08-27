@@ -15,9 +15,9 @@ $(function() {
   const createPostElement = function(contribution) {
     
     // condition to check for append button.
-    const appendButton = $("#markcomplete")[0]?
-    `<div class="append-btn">Append to Story</div>`:
-    ``;
+    const appendButton = $("#markcomplete")[0] ?
+      `<div class="append-btn">Append to Story</div>` :
+      ``;
 
     let $contribution = $(`
       <article class="contribution-container">
@@ -38,13 +38,17 @@ $(function() {
       </article>
     `);
 
-    $contribution.find('.like-btn').on('click', function(event){
+    $contribution.find('.like-btn').on('click', function(event) {
       event.preventDefault();
       $.post(`/api/story/${storyId}/contributions/${contribution.id}`)
-        .then(() => {
-          loadPosts();
-        })
-    })
+        .then((res) => {
+          if (res.redirect) {
+            window.location.assign(res.redirect);
+          } else {
+            loadPosts();
+          }
+        });
+    });
 
     $contribution.find('.append-btn').on('click', (event) => {
       event.preventDefault();
@@ -52,13 +56,17 @@ $(function() {
       return $.ajax({
         method: 'PUT',
         url: `/api/story/${storyId}/contributions/append/${contribution.id}`
-      }).then(()=>{
+      }).then((res)=>{
+        if (res.redirect) {
+          window.location.assign(res.redirect);
+        } else {
           loadPosts();
-        })
-    })
+        }
+      });
+    });
 
     return $contribution;
-  }
+  };
 
   const renderPosts = function(posts) {
     $('#posts-container').empty();
@@ -69,12 +77,12 @@ $(function() {
     }
   };
 
-  const appendContent = function(posts){
+  const appendContent = function(posts) {
     $('#appended-content').empty();
 
     for (const post of posts) {
       if (post.accepted) {
-        const $element = $(`<div>${post.content}</div>`)[0]
+        const $element = $(`<div>${post.content}</div>`)[0];
         $('#appended-content')[0].prepend($element);
       }
     }
@@ -86,7 +94,7 @@ $(function() {
         appendContent(posts);
         renderPosts(posts);
       });
-  }
+  };
 
   // initial load of all contribution posts in db
   loadPosts();
@@ -111,11 +119,17 @@ $(function() {
       $form.trigger('reset');
       // POST request in query string format
       $.post(`/api/story/${storyId}/contributions`, serialized)
-       .then(() => {
-         loadPosts();
-       })
+        .then((res,status) => {
+          if (res.redirect) {
+            window.location.assign(res.redirect);
+          } else {
+            loadPosts();
+          }
+        }).catch((err)=>{
+          console.log("err", err);
+        });
     }
-  })
+  });
 
   // Mark story complete
   $('#markcomplete').on('click', (event) => {
@@ -125,28 +139,32 @@ $(function() {
     return $.ajax({
       method: 'PUT',
       url: `/api/story/${storyId}/complete`
-    }).then(() => {
-      location.reload(true);
-    })
-  })
+    }).then((res) => {
+      if (res.redirect) {
+        window.location.assign(res.redirect);
+      } else {
+        location.reload(true);
+      }
+    });
+  });
 });
 
 
 //to check if user got no input for the login and register
-$(document).ready(function(){
- $('.login-form').submit(function(event){
-  $('section form .input').each(function(index, input){
-    const data = $(input);
-    if(!data.val()){
+$(document).ready(function() {
+  $('.login-form').submit(function(event) {
+    $('section form .input').each(function(index, input) {
+      const data = $(input);
+      if (!data.val()) {
       // console.log('there no value!!!',data.attr('name'));
-      event.preventDefault();
-      $('section .alert').slideDown();
-    }else{
-      $('login-form').submit();
-    }
-  })
- })
-})
+        event.preventDefault();
+        $('section .alert').slideDown();
+      } else {
+        $('login-form').submit();
+      }
+    });
+  });
+});
 
   
 
