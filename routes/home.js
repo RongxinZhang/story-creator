@@ -18,6 +18,7 @@ module.exports = (db) => {
     stories.is_complete AS status, 
     stories.created_at AS created_at,
     stories.photo_url,
+    stories.content,
     stories.storyurl_id AS url_id,
     COUNT(contributions.*) AS total_contributions,
     users.username AS created_by
@@ -38,7 +39,7 @@ module.exports = (db) => {
         }
 
         const responseObj = { firstStory: results.splice(0,1), stories: results };
-        console.log(responseObj);
+        // console.log(responseObj);
         res.render('stories', responseObj);
       })
       .catch(err => {
