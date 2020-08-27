@@ -1,0 +1,33 @@
+body{
+  color:black;
+  font-weight: bold;
+  font-size:12px;
+}
+.complete-title{
+  text-align:center;
+}
+.complete-img{
+  display:block;
+  margin-left: auto;
+  margin-right:auto;
+  width:80%;
+}
+.complete-info{
+  display:flex;
+  width: 80%;
+  height:50px;
+  // border:1px solid black;
+  margin-left:99px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.complete-user{
+  display:flex;
+  flex-direction: column;
+}
+
+.complete-content{
+  width:80%;
+  margin-left:98px;
+  margin-top:30px;
+}
