@@ -41,8 +41,12 @@ $(function() {
     $contribution.find('.like-btn').on('click', function(event) {
       event.preventDefault();
       $.post(`/api/story/${storyId}/contributions/${contribution.id}`)
-        .then(() => {
-          loadPosts();
+        .then((res) => {
+          if (res.redirect) {
+            window.location.assign(res.redirect);
+          } else {
+            loadPosts();
+          }
         });
     });
 
@@ -52,8 +56,12 @@ $(function() {
       return $.ajax({
         method: 'PUT',
         url: `/api/story/${storyId}/contributions/append/${contribution.id}`
-      }).then(()=>{
-        loadPosts();
+      }).then((res)=>{
+        if (res.redirect) {
+          window.location.assign(res.redirect);
+        } else {
+          loadPosts();
+        }
       });
     });
 
@@ -111,12 +119,14 @@ $(function() {
       $form.trigger('reset');
       // POST request in query string format
       $.post(`/api/story/${storyId}/contributions`, serialized)
-        .then((res) => {
+        .then((res,status) => {
           if (res.redirect) {
             window.location.assign(res.redirect);
           } else {
             loadPosts();
           }
+        }).catch((err)=>{
+          console.log("err", err);
         });
     }
   });
@@ -129,8 +139,12 @@ $(function() {
     return $.ajax({
       method: 'PUT',
       url: `/api/story/${storyId}/complete`
-    }).then(() => {
-      location.reload(true);
+    }).then((res) => {
+      if (res.redirect) {
+        window.location.assign(res.redirect);
+      } else {
+        location.reload(true);
+      }
     });
   });
 });

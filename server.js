@@ -65,7 +65,7 @@ const displayStory = require("./routes/storytop");
 const registerUser = require("./routes/register");
 const registered = require("./routes/submitRegister");
 
-const authMiddleware = require("./routes/authMiddleware");
+const authMiddlewareRedirect = require("./routes/authMiddlewareRedirect");
 
 /**
  * API ROUTES
@@ -92,7 +92,7 @@ app.use("/", toHomePage(db));
 
 // create and update story
 app.use("/new", createRoutes(db));
-app.use("/update", authMiddleware(db), updateRoutes(db));
+app.use("/update", authMiddlewareRedirect(db), updateRoutes(db));
 app.use("/story", displayStory(db));
 
 app.listen(PORT, () => {

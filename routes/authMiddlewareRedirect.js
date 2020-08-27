@@ -7,9 +7,8 @@ const auth = (db) =>{
 
     // responds with redirect if no sessions
     if (!userName) {
-      console.log("--> auth: not logged in");
-      res.json({redirect: "/register"});
-      return;
+      console.log("--> auth-redirect: not logged in");
+      return res.redirect('/register');
     }
 
     const queryString = `SELECT id FROM users 
@@ -21,7 +20,7 @@ const auth = (db) =>{
           req.session.userId = data.rows[0].id;
           return next();
         } else {
-          console.log("--> auth: not logged in");
+          console.log("--> auth-redirect: not logged in");
           return res.redirect('/register');
         }
       });

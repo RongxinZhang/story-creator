@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { generateRandomId } = require('../lib/data-helpers.js');
-const authMiddleware = require('./authMiddleware');
+const authMiddlewareRedirect = require('./authMiddlewareRedirect');
 
 module.exports = (db) => {
   
@@ -10,7 +10,7 @@ module.exports = (db) => {
     res.render('createstory');
   });
     
-  router.post("/story", authMiddleware(db), (req, res) => {
+  router.post("/story", authMiddlewareRedirect(db), (req, res) => {
     // const user_id = req.session.user_id;
     // dummy owner_id
     const user_id = 1;
