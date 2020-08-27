@@ -30,11 +30,19 @@ module.exports = (db) => {
         const results = data.rows[0];
         let isOwner = false;
 
-        if (userId === data.rows[0].owner_id){
+        if(results.is_complete){
+          res.render('completestory',{story: results})
+          res.end()
+        }
+        if(userId === data.rows[0].owner_id){
           isOwner = true;
         }
-        console.log(isOwner)
+        if(!results.is_complete ){
+          console.log(isOwner)
         res.render('story', { story: results, isOwner})
+        }
+        
+        
       })
   })
 
