@@ -20,11 +20,12 @@
           <h3><%= (firstStory[0].content).slice(0, 100) %>...</h3>
         </a>
           <h4>By <%= firstStory[0].created_by %></h4>
-        <div class="status-container">
-          <h4><%= firstStory[0].status %></h4>
           <h4><%= firstStory[0].total_contributions %> contributions</h4>
-        </div>
+        <div class="status-container">
           <h5><%= firstStory[0].created_at %></h5>
+          <h5>&centerdot;</h5>
+          <h5><%= firstStory[0].status %></h5>
+        </div>
       </div>
     </div>
   </section>
@@ -41,11 +42,12 @@
             <h3><%= (story.content).slice(0, 100) %>...</h3>
           </a>
             <h4>By <%= story.created_by %></h4>
+            <h4><%= story.total_contributions %> contributions</h4>
             <div class="status-container">
-              <h4><%= story.status %></h4>
-              <h4><%= story.total_contributions %> contributions</h4>
+              <h5><%= story.created_at %></h5>
+              <h5>&centerdot;</h5>
+              <h5><%= story.status %></h5>
             </div>
-            <h5><%= story.created_at %></h5>
         </div>
         <div class="thumbnail-container">
           <div class="image"style="background-image:url('<%= story.photo_url %>');"> </div>

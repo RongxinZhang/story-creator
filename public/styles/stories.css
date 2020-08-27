@@ -63,12 +63,13 @@ section {
 
 .story-container .text-container h5 {
   color: grey;
+  padding-right: 0.5em;
 }
 
 .story-container .status-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .story-container .thumbnail-container {
