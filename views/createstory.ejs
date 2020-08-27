@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
+  <%- include('partials/_head') %>
   <title>New Story - Story Creator</title>
   <link rel="stylesheet" href="/styles/create.css" type="text/css" />
-  <%- include('head') %>
 </head>
 <body>
   <%- include('_header') %>
@@ -13,16 +12,17 @@
       <div class="publish-btn">
         <button type="submit">Publish</button>
       </div>
-      <div class="section-inner">
+      <div class="section-title">
         <input class="new-title" type="text" name="title" placeholder="Title">   
       </div>
 
-      <div class="section-inner">
+      <div class="section-photo">
         <input class="new-photo" type="url" name="photo_url" placeholder="Insert a photo url">
       </div>
 
-      <div class="section-inner">
-        <input class="new-story" type="textarea" name="content" placeholder="Tell your story...">
+      <div class="section-content">
+        <textarea class="new-story" name="content" placeholder="Tell your story..."></textarea>
+        <!-- <input class="new-story" type="textarea" name="content" placeholder="Tell your story..."> -->
       </div>
   
   
