@@ -70,12 +70,12 @@ $(function() {
   };
 
   const appendContent = function(posts){
-    // wrap all this in a function
     $('#appended-content').empty();
 
     for (const post of posts) {
       if (post.accepted) {
-        const $element = $(`<div>${post.content}</div>`)[0]
+        const $element = $(`
+        <div>${post.content}</div>`)[0]
         $('#appended-content')[0].prepend($element);
       }
     }

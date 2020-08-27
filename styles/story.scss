@@ -83,6 +83,7 @@ div:empty {
 
 div.like-btn {
   border: none;
+  margin-right: 0;
 }
 
 .like-btn, .append-btn{
@@ -90,6 +91,7 @@ div.like-btn {
   padding: 10px;
   border: 1px solid #F2F2F2;
   display: inline-block;
+  margin: 0 10px;
 }
 
 footer {
