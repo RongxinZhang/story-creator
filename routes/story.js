@@ -6,12 +6,11 @@
  */
 
 const express = require('express');
-const { query } = require('express');
 const router  = express.Router();
 
 /**
- * Middleware: Check if story is completed 
- * @param {node-postgress} db 
+ * Middleware: Check if story is completed
+ * @param {node-postgress} db
  */
 const isStoryComplete = (db)=>{
   return function(req, res, next) {
@@ -20,7 +19,6 @@ const isStoryComplete = (db)=>{
 
     db.query(query, inputValues)
       .then(data => {
-        console.log(data.rows[0])
         if (!data.rows[0].is_complete) {
           next();
         } else {
@@ -75,7 +73,8 @@ const getContributions = (db)=>{
 const createContribution = (db)=>{
   router.post("/:storyId/contributions", isStoryComplete(db), (req,res)=>{
     // TODO: should use user session
-    const userId = 1;
+
+    const userId = req.session.userId;
 
     let query = `INSERT INTO contributions 
           (user_id, story_id, content)
@@ -83,9 +82,9 @@ const createContribution = (db)=>{
               (SELECT id FROM stories WHERE storyurl_id = $2), 
             $3) RETURNING *;`;
 
-    const inputValues = [ 
-      userId, 
-      req.params.storyId, 
+    const inputValues = [
+      userId,
+      req.params.storyId,
       req.body.content
     ];
 
@@ -107,9 +106,9 @@ const createContribution = (db)=>{
  * @param {node-postgress} db
  */
 const likeContribution = (db)=>{
-  router.post("/:storyId/contributions/:contributionId",isStoryComplete(db), (req,res)=>{
+  router.post("/:storyId/contributions/:contributionId", isStoryComplete(db), (req,res)=>{
     // TODO: should use user session
-    const userId = 1;
+    const userId = req.session.userId;
 
     let query = `INSERT INTO contribution_likes 
           (user_id, contribution_id)
@@ -138,7 +137,7 @@ const likeContribution = (db)=>{
 const appendContribution = (db)=>{
   router.put("/:storyId/contributions/append/:contributionId",isStoryComplete(db), (req,res)=>{
     // TODO: should use user session
-    const userId = 1;
+    const userId = req.session.userId;
 
     const selectStoryQuery = `
       SELECT owner_id 
@@ -184,7 +183,7 @@ const appendContribution = (db)=>{
 const completeStory = (db)=>{
   router.put("/:storyId/complete",isStoryComplete(db), (req,res)=>{
     // TODO: should use user session
-    const userId = 1;
+    const userId = req.session.userId;
   
     let selectStoryQuery = `SELECT owner_id FROM stories WHERE storyurl_id = $1`;
   

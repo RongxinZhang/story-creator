@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt');
 
 const toSubmit = (db) =>{
   router.post("/", (req, res)=>{
-    const queryString = `SELECT email, password FROM users 
+    const queryString = `SELECT username, password FROM users 
     WHERE  users.email = $1`;
 
     console.log(req.body);
@@ -23,7 +23,8 @@ const toSubmit = (db) =>{
 
         if (bcrypt.compareSync(password, passwordHash)) {
           // Set sessions here
-          res.json({userAuthenticationed: true});
+          req.session['username'] = data.rows[0].username;
+          res.redirect("/");
         } else {
           throw (Error("Wrong password or username"));
         }

@@ -110,8 +110,12 @@ $(function() {
       $form.trigger('reset');
       // POST request in query string format
       $.post(`/api/story/${storyId}/contributions`, serialized)
-        .then(() => {
-          loadPosts();
+        .then((res) => {
+          if (res.redirect) {
+            window.location.assign(res.redirect);
+          } else {
+            loadPosts();
+          }
         });
     }
   });

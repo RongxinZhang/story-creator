@@ -36,7 +36,10 @@ const submitRegister = (db) => {
 
         return db.query(queryString2, inputValue);
       })
-      .then(() => {
+      .then(data => {
+        // Set Cookie Session
+        req.session['username'] = data.rows[0].username;
+
         res.json({userCreated: true});
       })
       .catch(err => {
