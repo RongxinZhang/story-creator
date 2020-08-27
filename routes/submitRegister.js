@@ -31,7 +31,8 @@ const submitRegister = (db) => {
         db.query(queryString, inputValue)
         .then(data => {
           const users = data.rows;
-          res.json({ users });
+          // res.json({ users });
+          res.redirect('/');
         })
         .catch(err => {
           res

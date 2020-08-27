@@ -25,8 +25,9 @@
         <div>
           <h3 class="story-title"><%= story.title %></h3>
         </div>
-        <div class="story-photo">
-          <img src='<%= story.photo_url %>'/>
+        <div class="story-photo" style="background-image:url('<%= story.photo_url %>');">
+
+          <!-- <img src='<%= story.photo_url %>'/> -->
         </div>
         <div class="story-content">
           <p><%= story.content %></p>

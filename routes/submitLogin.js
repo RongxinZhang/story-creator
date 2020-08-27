@@ -24,7 +24,8 @@ const toSubmit = (db) =>{
     .then(data=>{
       console.log(req.body);
       const users = data.rows;
-      res.json({users});
+      // res.json({users});
+      res.redirect('/');
     })
     .catch(err=>{
       res
