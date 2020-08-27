@@ -2,29 +2,30 @@
 <html lang="en">
 <head>
   
-  <title>Edit Your Story</title>
+  <title>Edit Your Story - Story Creator</title>
+  <link rel="stylesheet" href="/styles/update.css" type="text/css" />
   <%- include('head') %>
 </head>
 <body>
   <%- include('_header') %>
-  <section class='pt-60'>
+  <section class='pt-60 edit-story'>
     <form method="POST" action="/update/<%= story.storyurl_id %>">
-      <label>Edit Your Story</label>
-      
-      <div>
-        <input type="text" name="title" value="<%= story.title %>">   
-      </div>
-  
-      <div>
-        <input type="textarea" name="content" value="<%= story.content %>">
-      </div>
-  
-      <div>
-        <input type="url" name="photo_url" placeholder="Insert a photo" value="<%= story.photo_url %>">
-      </div>
-  
-      <div>
+      <div class="update-btn">
         <button type="submit">Submit Changes</button>
+      </div>
+      <div class="section-inner">
+        <input class="update-title" type="text" name="title" value="<%= story.title %>">   
+      </div>
+  
+      <div class="section-inner">
+        <input class="update-photo" type="url" name="photo_url" placeholder="Insert a photo" value="<%= story.photo_url %>">
+      </div>
+
+      <div class="section-inner">
+        <input class="update-story" type="textarea" name="content" value="<%= story.content %>">
+      </div>
+  
+      <div>
         <a href='#'>Cancel</a>
       </div>
   
