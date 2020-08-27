@@ -7,30 +7,28 @@ body{
 }
 .wrapper{
   width:90%;
-  margin-left:auto;
-  margin-right:auto;
+  margin:auto;
+  padding-left:100px;
+  padding-right:100px;
+  padding-bottom:30px;
+  padding-right:165px;
   display:flex;
   flex-direction: column;
   justify-content:center;
-  padding-bottom:30px;
+  
 }
 .complete-title{
-  margin-left:17%;
-  margin-right:83%;
   font-size:300%;
+  text-transform: capitalize;
+ 
 }
 .complete-img{
   display:block;
-  margin-left: auto;
-  margin-right:auto;
-  width:65%;
+  width:600px;
 }
 .complete-info{
   display:flex;
   height:50px;
-  // border:1px solid black;
-  margin-left:auto;
-  margin-right:auto;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -40,7 +38,5 @@ body{
 }
 
 .complete-content{
-  width:65%;
-  margin-left:auto;
-  margin-right:auto;
+  text-align:left;
 }
