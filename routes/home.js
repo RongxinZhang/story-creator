@@ -38,6 +38,14 @@ module.exports = (db) => {
           row.created_at = moment(row.created_at).format("MMM Do");
         }
 
+        for (const row of data.rows){
+          if (row.status) {
+            row.status = "Completed"
+          } else {
+            row.status = "In Progress"
+          }
+        }
+        
         const responseObj = { firstStory: results.splice(0,1), stories: results };
         // console.log(responseObj);
         res.render('stories', responseObj);

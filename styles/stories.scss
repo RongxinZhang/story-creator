@@ -61,7 +61,12 @@ section{
     }
 
   }
-  
+  .status-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .thumbnail-container{
     height: 160px;
     min-width: 160px;
