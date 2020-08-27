@@ -7,32 +7,34 @@
 
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require('bcrypt');
 
 const toSubmit = (db) =>{
   router.post("/", (req, res)=>{
-    const queryString =`
-    SELECT * FROM users 
-    WHERE  users.email = $1
-     AND users.password = $2;
-    `;
-    const inputValue = [
-      req.body.email,
-      req.body.password
-    ];
-    
-    db.query(queryString, inputValue)
-    .then(data=>{
-      console.log(req.body);
-      const users = data.rows;
-      res.json({users});
-    })
-    .catch(err=>{
-      res
-      .status(500)
-      .json({ error: err.message });
-    })
-  })
+    const queryString = `SELECT email, password FROM users 
+    WHERE  users.email = $1`;
+
+    console.log(req.body);
+
+    db.query(queryString, [ req.body.email ])
+      .then(data =>{
+        const password = req.body.password;
+        const passwordHash = data.rows[0].password;
+
+        if (bcrypt.compareSync(password, passwordHash)) {
+          // Set sessions here
+          res.json({userAuthenticationed: true});
+        } else {
+          throw (Error("Wrong password or username"));
+        }
+      })
+      .catch(err=>{
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
   return router;
-}
+};
 
 module.exports = { toSubmit };

@@ -14,9 +14,9 @@ $(function() {
   const createPostElement = function(contribution) {
     
     // condition to check for append button.
-    const appendButton = $("#markcomplete")[0]?
-    `<div class="append-btn">Append to Story</div>`:
-    ``;
+    const appendButton = $("#markcomplete")[0] ?
+      `<div class="append-btn">Append to Story</div>` :
+      ``;
 
     let $contribution = $(`
       <article class="contribution-container">
@@ -37,13 +37,13 @@ $(function() {
       </article>
     `);
 
-    $contribution.find('.like-btn').on('click', function(event){
+    $contribution.find('.like-btn').on('click', function(event) {
       event.preventDefault();
       $.post(`/api/story/${storyId}/contributions/${contribution.id}`)
         .then(() => {
           loadPosts();
-        })
-    })
+        });
+    });
 
     $contribution.find('.append-btn').on('click', (event) => {
       event.preventDefault();
@@ -52,12 +52,12 @@ $(function() {
         method: 'PUT',
         url: `/api/story/${storyId}/contributions/append/${contribution.id}`
       }).then(()=>{
-          loadPosts();
-        })
-    })
+        loadPosts();
+      });
+    });
 
     return $contribution;
-  }
+  };
 
   const renderPosts = function(posts) {
     $('#posts-container').empty();
@@ -68,13 +68,13 @@ $(function() {
     }
   };
 
-  const appendContent = function(posts){
+  const appendContent = function(posts) {
     // wrap all this in a function
     $('#appended-content').empty();
 
     for (const post of posts) {
       if (post.accepted) {
-        const $element = $(`<div>${post.content}</div>`)[0]
+        const $element = $(`<div>${post.content}</div>`)[0];
         $('#appended-content')[0].prepend($element);
       }
     }
@@ -86,7 +86,7 @@ $(function() {
         appendContent(posts);
         renderPosts(posts);
       });
-  }
+  };
 
   // initial load of all contribution posts in db
   loadPosts();
@@ -110,11 +110,11 @@ $(function() {
       $form.trigger('reset');
       // POST request in query string format
       $.post(`/api/story/${storyId}/contributions`, serialized)
-       .then(() => {
-         loadPosts();
-       })
+        .then(() => {
+          loadPosts();
+        });
     }
-  })
+  });
 
   // Mark story complete
   $('#markcomplete').on('click', (event) => {
@@ -126,8 +126,8 @@ $(function() {
       url: `/api/story/${storyId}/complete`
     }).then(() => {
       location.reload(true);
-    })
-  })
+    });
+  });
 });
 
 
