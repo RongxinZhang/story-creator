@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-let moment = require('moment');
+const moment = require('moment');
 const router  = express.Router();
 
 module.exports = (db) => {

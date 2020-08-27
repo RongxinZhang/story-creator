@@ -22,7 +22,7 @@ const toSubmit = (db) =>{
     
     db.query(queryString, inputValue)
     .then(data=>{
-      console.log(req.body);
+      // console.log(req.body);
       const users = data.rows;
       // res.json({users});
       res.redirect('/');
