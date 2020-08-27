@@ -1,11 +1,13 @@
 section {
-  padding: 100px 100px;
+  padding: 40px 100px 100px 100px;
   max-width: 800px;
   margin-left: 5%;
 }
 
 .main-story {
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .stories {
@@ -61,6 +63,13 @@ section {
 
 .story-container .text-container h5 {
   color: grey;
+  padding-right: 0.5em;
+}
+
+.story-container .status-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .story-container .thumbnail-container {
@@ -92,6 +101,12 @@ section {
 .first-story-container .thumbnail-container .image {
   width: 100%;
   height: 100%;
+}
+
+.first-story-container .text-container {
+  width: 95%;
+  word-wrap: break-word;
+  margin: 0 5%;
 }
 
 .first-story-container .text-container h1 {

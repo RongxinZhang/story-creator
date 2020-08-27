@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Stories</title>
     <%- include('partials/_head') %>
-    <link rel="stylesheet" href="/styles/stories.css" type="text/css" />
+    <title>Stories</title>
+    <link rel="stylesheet" href="/styles/completestory.css" type='text/css'/>
     <%- include('_header') %>
-    <%- include('head') %>
   </head>
 <body>
-  <div class='wrapper'>
-  <h1 class='complete-title'><%=story.title %></h1>
-  <div class='complete-info'>
-   <div class='complete-user'>
-    <div><%= story.username%></div>
-    <div><%= story.created_at %></div>
-   </div>
-   <div class='status'>Completed</div>
-  </div>
-  <img src="<%=story.photo_url%>" alt="" class='complete-img'>
-  <div class='complete-content'><%=story.content%></div>
-</div>
+  <section class='story-container'>
+    <div>
+      <h1 class='complete-title'><%= story.title %></h1>
+    </div>
+
+    <div class='complete-info'>
+      <div class='complete-user'>
+        <div><%= story.username%></div>
+        <div><%= story.created_at %></div>
+      </div>
+        <div class='status'>Completed</div>
+      </div>
+    </div>
+    <div>
+      <img src="<%=story.photo_url%>" alt="" class='complete-img'>
+    </div>
+    <div>
+      <div class='complete-content'><%=story.content%></div>
+    </div>
+  </section>
 </body>
 </html>

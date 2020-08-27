@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const moment = require('moment');
 
 module.exports = (db) => {
   router.get("/:storyId", (req, res) => {
@@ -30,6 +31,10 @@ module.exports = (db) => {
         const results = data.rows[0];
         let isOwner = false;
 
+        for (const row of data.rows) {
+          row.created_at = moment(row.created_at).format("MMM Do");
+        }
+
         if(results.is_complete){
           res.render('completestory',{story: results})
           res.end()
@@ -38,7 +43,7 @@ module.exports = (db) => {
           isOwner = true;
         }
         if(!results.is_complete ){
-          console.log(isOwner)
+          // console.log(isOwner)
         res.render('story', { story: results, isOwner})
         }
         
