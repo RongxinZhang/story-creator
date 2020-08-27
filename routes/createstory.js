@@ -10,7 +10,7 @@ module.exports = (db) => {
     res.render('createstory');
   });
     
-  router.post("/story", authMiddleware, (req, res) => {
+  router.post("/story", authMiddleware(db), (req, res) => {
     // const user_id = req.session.user_id;
     // dummy owner_id
     const user_id = 1;
