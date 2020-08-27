@@ -1,3 +1,4 @@
+$('.errormsg').hide();
 $(function() {
   // get storyurl_id as storyId from url
   const url = $(location).attr("href");
@@ -102,7 +103,6 @@ $(function() {
     const $input = $('textarea').val();
 
     if (!$input) {
-      $errorMsg.hide(350);
       $('#emptyfield').slideDown(700);
     } else {
       $errorMsg.hide(350);
