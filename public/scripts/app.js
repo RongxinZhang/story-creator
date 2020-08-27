@@ -1,3 +1,4 @@
+$('.errormsg').hide();
 $(function() {
   // get storyurl_id as storyId from url
   const url = $(location).attr("href");
@@ -25,11 +26,11 @@ $(function() {
             <h5>${contribution.username}</h5>
           </div>
         </header>
-        <div>
+        <div class="contribution-content">
           <p>${escape(contribution.content)}</p>
         </div>
         <footer>
-          <div>${contribution.created_at}</div>
+          <div>${moment(contribution.created_at).fromNow(true)} ago</div>
           <div class="like-btn"><i class="fas fa-thumbs-up"></i></div>
           <div class="likecount">${contribution.like_count}</div>
           ${appendButton}
@@ -69,7 +70,6 @@ $(function() {
   };
 
   const appendContent = function(posts){
-    // wrap all this in a function
     $('#appended-content').empty();
 
     for (const post of posts) {
@@ -95,15 +95,16 @@ $(function() {
   const $form = $('#new-post-form');
   const $errorMsg = $('.errormsg');
   
-  $form.on('submit', (event) => {
+
+  $form.unbind('submit').bind('submit', (event) => {
     event.preventDefault();
 
     const serialized = $form.serialize();
     const $input = $('textarea').val();
+    // console.log($input, "here's the log");
 
     if (!$input) {
-      $errorMsg.hide(350);
-      $('#emptyfield').slideDown(700);
+      $('.errormsg').slideDown(700);
     } else {
       $errorMsg.hide(350);
       // empty input field upon submission
