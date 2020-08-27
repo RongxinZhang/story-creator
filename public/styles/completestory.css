@@ -43,4 +43,5 @@ section.story-container {
   font-size: 1.5em;
   line-height: 125%;
   padding-bottom: 2em;
+  word-wrap: break-word;
 }
