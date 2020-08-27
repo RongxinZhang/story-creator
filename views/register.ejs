@@ -10,21 +10,24 @@
   <body>
     <%- include('_header') %>
     <section class='pt-60'>
-      <h1>Please register here</h1>
+      <div class='wrapper'>
+      <h2>Register</h2>
+      <!-- <h4>please Enter your info below to create an account</h4> -->
       <div class='alert'>You cannot have empty field</div>
       <form action="/api/register", method ='POST' class='login-form'>
-         <label for="">Username:</label>
+         <label for="">Username</label>
          <input type="text" name='username' class='input'>
-         <label for="">First Name:</label>
+         <label for="">First Name</label>
          <input type="text" name ='first_name' class='input'>
-         <label for="">last Name:</label>
+         <label for="">Last Name</label>
          <input type="text" name ='last_name' class='input'>
-         <label for="">Email:</label>
+         <label for="">Email</label>
          <input type="email" name ='email' class='input'>
-         <label for="">Password:</label>
+         <label for="">Password</label>
          <input type="password" name ='password' class='input'>
-         <input type="submit" class='submit'>
+         <input type="submit" class='submit' value='continue'>
       </form>
+    </div>
     </section>
   </body>
 </html>
