@@ -72,13 +72,13 @@ const authMiddleware = require("./routes/authMiddleware");
  */
 
 // Route to get contributions
-app.use("/api/story", authMiddleware(db), storyRoutes.createContribution(db));
+app.use("/api/story", storyRoutes.createContribution(db));
 app.use("/api/story", storyRoutes.getContributions(db));
 
-app.use("/api/story", authMiddleware(db), storyRoutes.appendContribution(db));
-app.use("/api/story", authMiddleware(db), storyRoutes.likeContribution(db));
+app.use("/api/story", storyRoutes.appendContribution(db));
+app.use("/api/story", storyRoutes.likeContribution(db));
 
-app.use("/api/story", authMiddleware(db), storyRoutes.completeStory(db));
+app.use("/api/story", storyRoutes.completeStory(db));
 
 // Registration and login
 app.use("/register", registerUser(db));
@@ -92,7 +92,7 @@ app.use("/", toHomePage(db));
 
 // create and update story
 app.use("/new", createRoutes(db));
-app.use("/update", updateRoutes(db));
+app.use("/update", authMiddleware(db), updateRoutes(db));
 app.use("/story", displayStory(db));
 
 app.listen(PORT, () => {

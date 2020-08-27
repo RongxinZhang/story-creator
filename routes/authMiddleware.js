@@ -1,5 +1,5 @@
 const auth = (db) =>{
-  return function(req,res,next) {
+  return (req,res,next) => {
 
     const userName = req.session["username"];
 
@@ -7,8 +7,9 @@ const auth = (db) =>{
 
     // responds with redirect if no sessions
     if (!userName) {
-      res.send({redirect: "/register"});
-      return;
+      console.log("--> auth: not logged in");
+      return res.redirect('/register');
+      // return res.send({redirect: "/register"});
     }
 
     const queryString = `SELECT id FROM users 
@@ -20,6 +21,7 @@ const auth = (db) =>{
           req.session.userId = data.rows[0].id;
           return next();
         } else {
+          console.log("--> auth: cannot find user");
           return res.redirect('/register');
         }
       });
