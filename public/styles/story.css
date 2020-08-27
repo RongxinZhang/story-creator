@@ -27,19 +27,6 @@ div:empty {
   max-width: 100%;
 }
 
-.contribution-form {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 0px 10px 5px rgba(204, 198, 204, 0.45);
-  padding: 10px;
-}
-
-#post-input {
-  width: 100%;
-  border: none;
-  margin: 20px 0;
-}
-
 .edit {
   display: flex;
   flex-direction: row;
@@ -58,6 +45,29 @@ div:empty {
   margin: 0 10px;
 }
 
+.contribution-form {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px 5px rgba(204, 198, 204, 0.45);
+  padding: 10px;
+  margin: 20px 0;
+}
+
+#new-post-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#post-input {
+  width: 100%;
+  border: none;
+  margin: 20px 0;
+}
+
+.add-post-btn {
+  align-self: flex-end;
+}
+
 .add-post-btn button {
   background-color: #03A89C;
   color: #FFFFFF;
@@ -66,15 +76,38 @@ div:empty {
   padding: 5px;
 }
 
+#posts-container {
+  margin-top: 20px;
+}
+
+div.like-btn {
+  border: none;
+}
+
 .like-btn, .append-btn {
   cursor: pointer;
   padding: 10px;
-  border: 1px solid #000000;
+  border: 1px solid #F2F2F2;
   display: inline-block;
 }
 
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 0.8em;
+}
+
+.contribution-content {
+  padding: 10px;
+}
+
 .contribution-container {
-  border: 1px solid black;
+  border: 1px solid #F2F2F2;
+  padding: 10px;
+  margin: 12px 0;
 }
 
 @media only screen and (min-width: 1200px) {
