@@ -1,0 +1,42 @@
+body{
+  color:black;
+  font-weight: 400;
+  font-size:14px;
+  line-height: 1.5em;
+  
+}
+.wrapper{
+  width:90%;
+  margin:auto;
+  padding-left:100px;
+  padding-right:100px;
+  padding-bottom:30px;
+  padding-right:165px;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  
+}
+.complete-title{
+  font-size:300%;
+  text-transform: capitalize;
+ 
+}
+.complete-img{
+  display:block;
+  width:600px;
+}
+.complete-info{
+  display:flex;
+  height:50px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.complete-user{
+  display:flex;
+  flex-direction: column;
+}
+
+.complete-content{
+  text-align:left;
+}
