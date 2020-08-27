@@ -135,3 +135,25 @@ $(function() {
 });
 
 
+//to check if user got no input for the login and register
+$(document).ready(function(){
+ $('.login-form').submit(function(event){
+  $('section form .input').each(function(index, input){
+    const data = $(input);
+    if(!data.val()){
+      // console.log('there no value!!!',data.attr('name'));
+      event.preventDefault();
+      $('section .alert').slideDown();
+    }else{
+      $('login-form').submit();
+    }
+  })
+ })
+})
+
+  
+
+
+
+
+
