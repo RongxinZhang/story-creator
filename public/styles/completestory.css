@@ -42,8 +42,17 @@ section.story-container {
 
 .complete-content {
   text-align: left;
-  font-size: 1.5em;
-  line-height: 125%;
+  font-size: 1.3em;
+  line-height: 1.5em;
   padding-bottom: 2em;
   word-wrap: break-word;
+}
+
+.complete-contribitions-container {
+  word-wrap: break-word;
+  padding-bottom: 2em;
+}
+
+.complete-contribitions-container span {
+  color: grey;
 }

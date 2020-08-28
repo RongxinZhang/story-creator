@@ -28,9 +28,8 @@
       <div class='complete-content'><%=story.content%></div>
 
       <% for (let contribution of contributions) { %>
-        <div class='appended-content-container'>
-          <div class='appended-content'><%=contribution.content%></div>
-          <!-- <div class='appended-username'><%=contribution.content%></div> -->
+        <div class='complete-contribitions-container'>
+          <div class='contribition-content'><%=contribution.content%>  <span>- by <%=contribution.username%></span></div>
         </div>
       <% } %>
     </div>
