@@ -1,6 +1,8 @@
 -- Users table seeds here (Example)
 INSERT INTO users (username, first_name, last_name, email, password, created_at) 
-VALUES ('skater_boy', 'Bob', 'Smith', 'bskater@mail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2019-02-10'),
- ('awesome_guy', 'Andrew','chow','andrew12345@gmail.com','$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2020-08-21'),
- ('messedup_guy', 'Jacob','Ba','jabb78@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2020-07-25'),
- ('booknerd', 'Lisa','Chow','chow12345@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2010-12-01');
+VALUES ('TaylorDavis', 'Taylor', 'Davis', 'tdavis@mail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2019-02-10'),
+ ('ChrisJones', 'Chris', 'Jones', 'chris@mail.com','$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2018-08-21'),
+ ('AliceBrown', 'Alice', 'Brown', 'abrown@mail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2019-07-25'),
+ ('JoeyChang', 'Joey', 'Chang',' jchang@mail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2010-12-01'),
+ ('merrisawilliams', 'Merrisa', 'Williams','mwilliams@mail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2010-12-01'),
+ ('DeviSingh', 'Devi', 'Singh', 'dsingh@mail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '2010-12-01');
