@@ -22,6 +22,19 @@ module.exports = (db) => {
       WHERE stories.storyurl_id = $1
     ;`;
 
+
+    const queryStringContributions = `
+    SELECT contributions.content AS content, 
+      contributions.created_at AS created_at, 
+      users.username AS username
+    FROM contributions
+    JOIN users ON contributions.user_id = users.id
+    WHERE contributions.story_id = 
+      (SELECT id FROM stories WHERE storyurl_id = $1
+        AND contributions.accepted = TRUE)
+    ORDER BY contributions.created_at DESC;`;
+
+
     const queryParams = [
       req.params.storyId
     ];
@@ -35,21 +48,26 @@ module.exports = (db) => {
           row.created_at = moment(row.created_at).format("MMM Do");
         }
 
-        if(results.is_complete){
-          res.render('completestory',{story: results})
-          res.end()
-        }
-        if(userId === data.rows[0].owner_id){
+        if (userId === data.rows[0].owner_id) {
           isOwner = true;
         }
-        if(!results.is_complete ){
-          // console.log(isOwner)
-        res.render('story', { story: results, isOwner})
+
+        if (results.is_complete) {
+          db.query(queryStringContributions, queryParams)
+            .then(dataRequestContributions => {
+              console.log(dataRequestContributions.rows);
+              return res.render('completestory',{
+                story: results,
+                contributions: dataRequestContributions.rows,
+                isOwner
+              });
+            });
+        } else {
+          return res.render('story', { story: results, isOwner});
         }
         
-        
-      })
-  })
+      });
+  });
 
   return router;
-}
+};
