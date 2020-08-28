@@ -15,9 +15,11 @@
     <div class='complete-info'>
       <div class='complete-user'>
         <div><%= story.username%></div>
-        <div><%= story.created_at %></div>
+        <div><%= story.created_at %> 
+          <span>&centerdot;</span>
+          <span class='status'>Completed</span>
       </div>
-        <div class='status'>Completed</div>
+      </div>
       </div>
     </div>
     <div>
@@ -26,6 +28,12 @@
     </div>
     <div>
       <div class='complete-content'><%=story.content%></div>
+
+      <% for (let contribution of contributions) { %>
+        <div class='complete-contribitions-container'>
+          <div class='contribition-content'><%=contribution.content%>  <span>- by <%=contribution.username%></span></div>
+        </div>
+      <% } %>
     </div>
   </section>
 </body>

@@ -4,23 +4,37 @@ div:empty {
 
 .story-page {
   padding: 30px 100px;
-  max-width: 800px;
-  margin-left: 5%;
+  margin: 0px calc(5% - 20px) 0px 5%;
   display: flex;
   flex-direction: column;
-  font-size: 1.5em;
+  font-size: 1.3em;
+  line-height: 1.5em;
 }
 
 .story-content {
   padding: 20px 0;
-  max-width: 800px;
   word-wrap: break-word;
+}
+
+.story-content p {
+  margin-bottom: 2em;
+}
+
+.story-content #appended-content div {
+  margin-bottom: 2em;
+  font-size: 1em;
+}
+
+.story-title-container {
+  display: flex;
+  align-items: center;
 }
 
 .story-title {
   font-size: 2em;
   padding: 20px 0;
   font-weight: lighter;
+  line-height: 1.3em;
 }
 
 .story-photo {
@@ -36,7 +50,8 @@ div:empty {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  font-size: 0.8em;
+  font-size: 0.7em;
+  margin-left: auto;
 }
 
 .edit button {
@@ -44,19 +59,23 @@ div:empty {
   color: #FFFFFF;
   border-radius: 4px;
   border: 2px solid #03A89C;
-  padding: 5px;
+  padding: 7px 9px;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 #markcomplete {
   margin: 0 10px;
+  text-transform: uppercase;
 }
 
 .contribution-form {
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 10px 5px rgba(204, 198, 204, 0.45);
+  box-shadow: 0px 0px 5px 2px rgba(204, 198, 204, 0.45);
   padding: 10px;
   margin: 20px 0;
+  border-radius: 4px;
 }
 
 #new-post-form {
@@ -78,8 +97,11 @@ div:empty {
   background-color: #03A89C;
   color: #FFFFFF;
   border-radius: 4px;
+  text-transform: uppercase;
   border: 2px solid #03A89C;
-  padding: 5px;
+  padding: 15px 12px;
+  font-size: 0.8em;
+  font-weight: 700;
 }
 
 #posts-container {
@@ -97,6 +119,15 @@ div.like-btn {
   border: 1px solid #F2F2F2;
   display: inline-block;
   margin: 0 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #636363;
+}
+
+.contribution-container .appended {
+  border: none;
 }
 
 footer {
@@ -113,16 +144,11 @@ footer {
 }
 
 .contribution-container {
-  border: 1px solid #F2F2F2;
+  border-bottom: 1px solid #F2F2F2;
   padding: 10px;
   margin: 12px 0;
 }
 
-@media only screen and (min-width: 1200px) {
-  .story-page {
-    max-width: 1000px;
-  }
-  .story-content {
-    max-width: 1000px;
-  }
+.liked-color i {
+  color: #80bf1d;
 }

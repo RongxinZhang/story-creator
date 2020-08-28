@@ -1,9 +1,9 @@
 section.story-container{
   color:black;
-  width:90%;
-  padding: 50px 100px;
-  margin: auto;
-  max-width: 1000px;
+  // width:90%;
+  padding: 50px calc(5% + 80px) 100px calc(5% + 100px);
+  // margin: auto;
+  // max-width: 1000px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -43,8 +43,20 @@ section.story-container{
 
 .complete-content{
   text-align:left;
-  font-size: 1.5em;
-  line-height: 125%;
-  padding-bottom: 2em;
+  font-size: 1.3em;
+  line-height: 1.5em;
+  padding: 2em 0;
   word-wrap: break-word;
+}
+
+.complete-contribitions-container{
+  word-wrap: break-word;
+  padding-bottom: 2em;
+  font-size: 1.3em;
+  line-height: 1.5em;
+  
+  .contribition-content span{
+    color:grey;
+    font-size: 13px;
+  }
 }
