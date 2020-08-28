@@ -6,7 +6,7 @@ module.exports = (db) => {
   router.get("/:storyId", (req, res) => {
 
     // TEMPL SHOULD REMOVE
-    const userId = 1;
+    const userId = req.session.userId;
 
     const queryString = `
       SELECT title, 
