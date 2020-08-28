@@ -32,7 +32,7 @@ module.exports = (db) => {
     WHERE contributions.story_id = 
       (SELECT id FROM stories WHERE storyurl_id = $1
         AND contributions.accepted = TRUE)
-    ORDER BY contributions.created_at DESC;`;
+    ORDER BY contributions.created_at ASC;`;
 
 
     const queryParams = [
