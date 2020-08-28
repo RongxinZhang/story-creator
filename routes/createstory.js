@@ -13,7 +13,7 @@ module.exports = (db) => {
   router.post("/story", authMiddlewareRedirect(db), (req, res) => {
     // const user_id = req.session.user_id;
     // dummy owner_id
-    const user_id = 1;
+    const user_id = req.session.userId;
     const queryString = `
     INSERT INTO stories (
       owner_id, 
