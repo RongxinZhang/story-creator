@@ -34,6 +34,7 @@ div:empty {
   font-size: 2em;
   padding: 20px 0;
   font-weight: lighter;
+  line-height: 1.3em;
 }
 
 .story-photo {
@@ -123,6 +124,10 @@ div.like-btn {
   font-size: 0.8em;
   text-transform: uppercase;
   color: #636363;
+}
+
+.contribution-container .appended {
+  border: none;
 }
 
 footer {

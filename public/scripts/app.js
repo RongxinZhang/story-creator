@@ -15,12 +15,18 @@ $(function() {
   const createPostElement = function(contribution) {
     
     // condition to check for append button.
-    const appendButton = $("#markcomplete")[0] ?
+    let appendButton = $("#markcomplete")[0] ?
       `<div class="append-btn">Append to Story</div>` :
       ``;
+
+    appendButton = appendButton && contribution.accepted ?
+      `<div class="append-btn appended">Appended</div` :
+      appendButton;
+
     const likeButton = contribution.like_count > 0 ?
       `<div class="like-btn liked-color"><i class="fas fa-thumbs-up"></i></div>` :
       `<div class="like-btn"><i class="fas fa-thumbs-up"></i></div>`;
+
 
     let $contribution = $(`
       <article class="contribution-container">
