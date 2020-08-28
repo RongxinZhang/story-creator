@@ -18,6 +18,9 @@ $(function() {
     const appendButton = $("#markcomplete")[0] ?
       `<div class="append-btn">Append to Story</div>` :
       ``;
+    const likeButton = contribution.like_count > 0 ?
+      `<div class="like-btn liked-color"><i class="fas fa-thumbs-up"></i></div>` :
+      `<div class="like-btn"><i class="fas fa-thumbs-up"></i></div>`;
 
     let $contribution = $(`
       <article class="contribution-container">
@@ -31,7 +34,7 @@ $(function() {
         </div>
         <footer>
           <div>${moment(contribution.created_at).fromNow(true)} ago</div>
-          <div class="like-btn"><i class="fas fa-thumbs-up"></i></div>
+          ${likeButton}
           <div class="likecount">${contribution.like_count}</div>
           ${appendButton}
         </footer>
@@ -40,6 +43,7 @@ $(function() {
 
     $contribution.find('.like-btn').on('click', function(event) {
       event.preventDefault();
+      const $that = $(this);
       $.post(`/api/story/${storyId}/contributions/${contribution.id}`)
         .then((res) => {
           if (res.redirect) {

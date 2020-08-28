@@ -52,8 +52,10 @@ section.story-container{
 .complete-contribitions-container{
   word-wrap: break-word;
   padding-bottom: 2em;
-
-  span{
+  font-size: 1.3em;
+  
+  .contribition-content span{
     color:grey;
+    font-size: 13px;
   }
 }
