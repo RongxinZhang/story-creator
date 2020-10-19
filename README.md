@@ -7,13 +7,13 @@ Visit the App at: https://story-creator-club.herokuapp.com/
 ## Screenshots
 
 #### Browse Stories
-![Browse Stories]()
+![Browse Stories](https://github.com/RongxinZhang/story-creator/blob/master/docs/browse.gif?raw=true)
 
 #### Create Story
-![Create Story]()
+![Create Story](https://github.com/RongxinZhang/story-creator/blob/master/docs/create.gif?raw=true)
 
 #### Add Contributions and Likes, Append Contribution to Story
-![Add Contributions]()
+![Add Contributions](https://github.com/RongxinZhang/story-creator/blob/master/docs/contribution.gif?raw=true)
 
 ## Getting Started
 
