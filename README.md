@@ -4,6 +4,17 @@ A Full-Stack app that allows registered and logged-in users to create a short st
 
 Visit the App at: https://story-creator-club.herokuapp.com/
 
+## Screenshots
+
+#### Browse Stories
+![Browse Stories]()
+
+#### Create Story
+![Create Story]()
+
+#### Add Contributions and Likes, Append Contribution to Story
+![Add Contributions]()
+
 ## Getting Started
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
