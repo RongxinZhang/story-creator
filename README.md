@@ -1,7 +1,6 @@
-LHL Node Skeleton
-=========
+# Story Creator
 
-
+A Full-Stack app that allows registered and logged-in users to create a short story post. Other users can add contributions to the posted story, like other contribution posts. The owner of the story can then review the contributions and choose to append the ones he/she likes to her story - with attribution.
 
 ## Project Setup
 
